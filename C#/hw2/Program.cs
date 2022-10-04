@@ -53,7 +53,7 @@ string ShowThirdDigitOfNumber(int num)
     else
     {
         char third = numAsString[2];
-        result = $"Third digit of {num} is {Convert.ToString(third)}.";
+        result = $"Third digit of {num} is {third}.";
     }
     
     return result;
