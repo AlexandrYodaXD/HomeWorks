@@ -13,7 +13,7 @@ Console.WriteLine($"Second digit of {numberA} is {secondDigit}.");
 */
 
 /*
-// Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+// Задача 13 (вариант 1): Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
 int ShowThirdDigitOfNumber(int num)
 {
     int result;
@@ -40,6 +40,31 @@ if (thirdDigit > -1)
 else
     Console.WriteLine($"No third digit.");
 */
+
+// /*
+// Задача 13 (вариант 2): Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+string ShowThirdDigitOfNumber(int num)
+{
+    string result;
+    string numAsString = Convert.ToString(num);
+
+    if (numAsString.Length < 3)
+        result = "No third digit.";
+    else
+    {
+        char third = numAsString[2];
+        result = $"Third digit of {num} is {Convert.ToString(third)}.";
+    }
+    
+    return result;
+}
+
+Console.Write("Input number: ");
+int numberB = Convert.ToInt32(Console.ReadLine());
+string thirdDigit = ShowThirdDigitOfNumber(numberB);
+
+Console.WriteLine(thirdDigit);
+// */
 
 /*
 // Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
