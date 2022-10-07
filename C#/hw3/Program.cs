@@ -1,4 +1,5 @@
-﻿// Задача 19. Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
+﻿/*
+// Задача 19. Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
 // Вариант решения #1A (с комментариями и вспомогательными выводами в консоль).
 // Принимаются числа любой длинны, как с четным, так и с нечетным кол-вом цифр.
 bool IsThisPalindromeNumberFirstA(int num)
@@ -13,7 +14,7 @@ bool IsThisPalindromeNumberFirstA(int num)
         int lastDigit = num % 10; // переменная, хранящая последнюю цифру
         Console.WriteLine($"Последняя цифра числа {num} является {lastDigit}."); // просто для наглядности
 
-        
+
         int firstDigit = num; // тут будет храниться первая цифра числа, для начала просто копируем в нее num
         int countOfDigits = 0; // счетчик количества разрядов числа, пригодится позже
 
@@ -25,7 +26,7 @@ bool IsThisPalindromeNumberFirstA(int num)
         }
 
         Console.WriteLine($"Первой цифрой числа {num} является {firstDigit}."); // для наглядности
-        
+
         // если первая и последняя цифры различаются, то прерываем цикл, в res заносим false
         if (lastDigit != firstDigit)
         {
@@ -38,7 +39,7 @@ bool IsThisPalindromeNumberFirstA(int num)
         // Math.Pow(10, countOfDigits - 1) дает нам число, при делении по остатку на которое num даст нам первую цифру
         // по-идее, если я все правильно написал, то ситуцации где Math.Pow(10, countOfDigits - 1) будет равно нулю не должно возникать (но это не точно)
         num = num / 10 % (Convert.ToInt32(Math.Pow(10, countOfDigits - 1)));
-        Console.WriteLine($"Результат после {globalCount} итерации: {firstDigit} + {num} + {lastDigit}.");
+        Console.WriteLine($"Результат после {globalCount} итерации: {firstDigit}_{num}_{lastDigit}.");
         globalCount++;
         Console.WriteLine($"================================="); // разделитель для наглядности
     }
@@ -61,7 +62,7 @@ bool IsThisPalindromeNumberFirstB(int num)
             countOfDigits++;
             firstDigit /= 10;
         }
-        
+
         if (lastDigit != firstDigit)
         {
             res = false;
@@ -74,6 +75,7 @@ bool IsThisPalindromeNumberFirstB(int num)
     return res;
 }
 
+
 Console.Write("Введите число, которое будем проверять на палиндром: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
@@ -84,7 +86,37 @@ if (palindromeNumber)
     Console.WriteLine($"Число {number} является палиндромом.");
 else
     Console.WriteLine($"Число {number} НЕ является палиндромом.");
+*/
 
-
+/*
 // Задача 21. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+double FindDistance(double ax, double ay, double az, double bx, double by, double bz)
+{
+    return Math.Sqrt(Math.Pow(ax - bx, 2) + Math.Pow(ay - by, 2) + Math.Pow(az - bz, 2));
+}
+
+Console.Write("Введите коордитану X точки A: ");
+double ax = Convert.ToDouble(Console.ReadLine());
+
+Console.Write("Введите коордитану Y точки A: ");
+double ay = Convert.ToDouble(Console.ReadLine());
+
+Console.Write("Введите коордитану Z точки A: ");
+double az = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine($"Точка A будет иметь координаты ({ax}, {ay}, {az}).");
+
+Console.Write("Введите коордитану X точки B: ");
+double bx = Convert.ToDouble(Console.ReadLine());
+
+Console.Write("Введите коордитану Y точки B: ");
+double by = Convert.ToDouble(Console.ReadLine());
+
+Console.Write("Введите коордитану Z точки B: ");
+double bz = Convert.ToDouble(Console.ReadLine());
+
+Console.WriteLine($"Точка B будет иметь координаты ({bx}, {by}, {bz}).");
+
+Console.WriteLine($"Расстояние между точкой A({ax}, {ay}, {az}) и точкой B({bx}, {by}, {bz}) примерно равно равно {Math.Round(FindDistance(ax, ay, az, bx, by, bz), 2)}.");
+*/
 // Задача 23. Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
