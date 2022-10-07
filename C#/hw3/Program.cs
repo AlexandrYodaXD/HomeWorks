@@ -75,18 +75,54 @@ bool IsThisPalindromeNumberFirstB(int num)
     return res;
 }
 
+// Вариант решения 2 (строго для пятизначных чисел).
+
+void IsThisPalindromeNumberSecond(int num)
+{
+    if (num < 10000 ^ num > 99999)
+    {
+        Console.WriteLine($"ОШИБКА: введено не пятизначное число.");
+    }
+    else
+    {
+        int firstDigit = num / 10000;
+        int lastDigit = num % 10;
+
+        if (firstDigit == lastDigit)
+        {
+            int newNum = num % 10000 / 10;
+            firstDigit = newNum / 100;
+            lastDigit = newNum % 10;
+            if (firstDigit == lastDigit)
+                Console.WriteLine($"Число {num} является палиндромом.");
+            else
+                Console.WriteLine($"Число {num} НЕ является палиндромом.");
+        }
+        else
+            Console.WriteLine($"Число {num} НЕ является палиндромом.");
+    
+    }
+}
 
 Console.Write("Введите число, которое будем проверять на палиндром: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
-bool palindromeNumber = IsThisPalindromeNumberFirstA(number);
-// bool palindromeNumber = IsThisPalindromeNumberFirstB(number);
+// для проверки варианта 1А или варианта 1B раскомментировать одну из двух строк ниже
+// bool palindromeNumber = IsThisPalindromeNumberFirstA(number); // для проверки варианта 1А
+// bool palindromeNumber = IsThisPalindromeNumberFirstB(number); // для проверки варианта 1B
 
-if (palindromeNumber)
-    Console.WriteLine($"Число {number} является палиндромом.");
-else
-    Console.WriteLine($"Число {number} НЕ является палиндромом.");
+//  для проверки варианта 1А или варианта 1B раскомментировать ветвление ниже
+// if (palindromeNumber)
+//     Console.WriteLine($"Число {number} является палиндромом.");
+// else
+//     Console.WriteLine($"Число {number} НЕ является палиндромом.");
+//
+
+// для проверки варианта 2 раскоментировать строку ниже
+//  IsThisPalindromeNumberSecond(number);
 */
+
+
 
 /*
 // Задача 21. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
@@ -120,6 +156,9 @@ Console.WriteLine($"Точка B будет иметь координаты ({bx
 Console.WriteLine($"Расстояние между точкой A({ax}, {ay}, {az}) и точкой B({bx}, {by}, {bz}) примерно равно равно {Math.Round(FindDistance(ax, ay, az, bx, by, bz), 2)}.");
 */
 
+
+
+/*
 // Задача 23. Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
 // Вариант решения 1 (вывод в виде строки).
 void QuartsOfNumbersA(int n)
@@ -153,3 +192,4 @@ Console.Write("Введите число N: ");
 int n = Convert.ToInt32(Console.ReadLine());
 // QuartsOfNumbersA(n); // в виде строки
 QuartsOfNumbersB(n); // в виде таблицы
+*/
