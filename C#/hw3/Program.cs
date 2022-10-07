@@ -137,13 +137,13 @@ void QuartsOfNumbersA(int n)
 void QuartsOfNumbersB(int n)
 {
     int count = 1;
-    int tableSide = Convert.ToInt32(Math.Sqrt(n));
+    int tableSide = Convert.ToInt32(Math.Sqrt(n)); // размер стороны квадратной таблицы, чем больше n, тем больше сторона
 
     while (count <= n)
     {
         Console.Write($"{Math.Pow(count, 3)} ");
         // if (count < n) Console.Write(", "); // чтобы запятая не ставилась после последнего числа
-        if (count % tableSide == 0) Console.WriteLine();
+        if (count % tableSide == 0) Console.WriteLine(); // переносим строку, когда count достигет края таблицы
         count++;
     }
 }
@@ -151,5 +151,5 @@ void QuartsOfNumbersB(int n)
 
 Console.Write("Введите число N: ");
 int n = Convert.ToInt32(Console.ReadLine());
-QuartsOfNumbersA(n); // в виде строки
-// QuartsOfNumbersB(n); // в виде таблицы
+// QuartsOfNumbersA(n); // в виде строки
+QuartsOfNumbersB(n); // в виде таблицы
