@@ -33,9 +33,12 @@ LaunchMenu();
 
 
 // Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
-double APowB(int a, int b)
+int APowB(int a, int b)
 {
-    return Math.Pow(a, b);
+    int res = 1;
+    for (int i = 1; i <= b; i++)
+        res *= a;
+    return res;
 }
 
 void CallAPowB() // вспомогательный метод с запросом данных и выводом в терминал.
