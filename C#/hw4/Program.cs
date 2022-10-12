@@ -1,35 +1,66 @@
-﻿void LaunchMenu()
-{   Console.Clear();
+﻿void Launcher()
+{
+    Console.Clear();
+    Console.WriteLine("Вас приветствует мастер выбора задачи для запуска (v2).");
 
-    string[] tasksArray = {"Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.",
+    string[] tasksArray = {
+        "Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.",
         "Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.",
         "Задача 29: Напишите программу, которая задаёт массив из m элементов и выводит их на экран.",
         "Дополнительное задание. Заполнение массива пользовательскими целыми числами."
     };
 
-    Console.WriteLine("Вас приветствует Мастер выбора задачи для запуска.");
-    for (int i = 0; i < tasksArray.Length; i++)
-        Console.WriteLine($"    {i+1}. {tasksArray[i]}");
-
-    Console.Write("Введите номер задачи для запуска >: ");
-    int choise = Convert.ToInt32(Console.ReadLine());
-
-    while (choise < 0 ^ choise > tasksArray.Length)
+    bool loopFlag = true;
+    while (loopFlag)
     {
-        Console.WriteLine("ОШИБКА. Введен недопустимый номер задачи.");
-        Console.Write("Введите номер задачи для запуска >: ");
-        choise = Convert.ToInt32(Console.ReadLine());
-    }
-    Console.WriteLine("=============================================");
-    Console.WriteLine(tasksArray[choise-1]);
-    if (choise == 1) CallAPowB();
-    else if (choise == 2) CallSumOfDigits();
-    else if (choise == 3) CallMakeIntArray();
-    else if (choise == 4) PrintIntArray(MakeUserArray());
+        loopFlag = false;
 
+        for (int i = 0; i < tasksArray.Length; i++)
+            Console.WriteLine($"    {i+1}. {tasksArray[i]}");
+
+        Console.Write("Введите номер задачи для запуска >: ");
+        var choise = Console.ReadLine();
+        Console.WriteLine("=============================================");
+
+        switch (choise)
+        {
+            case "1":
+                CallAPowB();
+                break;
+            case "2":
+                CallSumOfDigits();
+                break;
+            case "3":
+                CallMakeIntArray();
+                break;
+            case "4":
+                PrintIntArray(MakeUserArray());
+                break;
+            default:
+                Console.WriteLine("ОШИБКА. Введен недопустимый номер задачи.");
+                loopFlag = true;
+                break;
+        }
+
+        if (loopFlag == false)
+        {
+            Console.Write("Запустить другую задачу? 'y' - да, любой иной символ - выход >: ");
+            switch(Console.ReadLine())
+            {
+                case "y":
+                case "Y":
+                    loopFlag = true;
+                    Console.WriteLine("=============================================");
+                    break;
+                default:
+                    Console.WriteLine("ЗАВЕРШЕНИЕ ПРОГРАММЫ.");
+                    break;
+            }
+        }
+    }
 }
 
-LaunchMenu();
+Launcher();
 
 
 // Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
@@ -43,6 +74,7 @@ int APowB(int a, int b)
 
 void CallAPowB() // вспомогательный метод с запросом данных и выводом в терминал.
 {
+    Console.WriteLine("Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.");
     Console.Write("Введите первое число >: ");
     int numberA = Convert.ToInt32(Console.ReadLine());
     Console.Write("Введите второе число >: ");
@@ -68,6 +100,7 @@ int SumOfDigits(int num) // принимает целое число, возвр
 
 void CallSumOfDigits() // вспомогательный метод с запросом данных и выводом в терминал.
 {
+    Console.WriteLine("Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.");
     Console.Write("Введите число >: ");
     int number = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine($"Сумма цифр числа {number} равна {SumOfDigits(number)}.");
@@ -100,6 +133,7 @@ void PrintIntArray(int[] array) // печать массива, состояще
 
 void CallMakeIntArray() // вспомогательный метод с запросом данных и выводом в терминал.
 {
+    Console.WriteLine("Задача 29: Напишите программу, которая задаёт массив из m элементов и выводит их на экран.");
     Console.Write("Введите размер массива >: ");
     int arrSize = Convert.ToInt32(Console.ReadLine());
     while (arrSize < 0)
@@ -122,6 +156,7 @@ void CallMakeIntArray() // вспомогательный метод с запр
 // Дополнительное задание.
 int[] MakeUserArray() // заполнение массива пользовательскими целыми числами
 {
+    Console.WriteLine("Дополнительное задание. Заполнение массива пользовательскими целыми числами.");
     Console.Write("Введите размер массива >: ");
     int size = Convert.ToInt32(Console.ReadLine());
 
