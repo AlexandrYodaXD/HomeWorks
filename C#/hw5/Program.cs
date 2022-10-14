@@ -50,17 +50,73 @@ void PrintDoubleArray(double[] array) // печать массива, состо
 
 int GetNotANegativeNumber(string msg)
 {
-    Console.Write(msg);
+    Console.Write(msg + " >: ");
     int number = Convert.ToInt32(Console.ReadLine());
     while (number < 0)
     {
         Console.WriteLine("ОШИБКА! Данный параметр не должен быть отрицательным!");
-        Console.Write(msg);
+        Console.Write(msg + " >: ");
         number = Convert.ToInt32(Console.ReadLine());
     }
     return number;
 }
 
+// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
+int CountOfEvenNumbers(int[] arr) // считает кол-во четных чисел в массиве.
+{
+    int count = 0;
+
+    for (int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] % 2 == 0) count ++;
+    }
+
+    return count;
+}
+
+void Task_1()
+{
+    int arrSize = GetNotANegativeNumber("Введите размер массива");
+    
+    int[] arrTask1 = MakeRandomIntArray(arrSize, 100, 999);
+    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных целых чисел в диапазоне [100, 999].");
+    PrintIntArray(arrTask1);
+    Console.WriteLine($"В массиве {CountOfEvenNumbers(arrTask1)} четных элемента(ов).");
+}
+
+// Task_1();
+
+// Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
+int SumOfNumsWithOddIdx(int[] array)
+{
+    int sum = 0;
+    for (int i = 1; i < array.Length; i += 2)
+    {
+        sum += array[i];
+    }
+    return sum;
+}
+
+void Task_2()
+{
+    int arrSize = GetNotANegativeNumber("Введите размер массива");
+
+    Console.Write("Введите нижнюю границу для генерации чисел >: ");
+    int minValue = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("Введите верхнюю границу для генерации чисел >: ");
+    int maxValue = Convert.ToInt32(Console.ReadLine());
+
+    int[] arrTask2 = MakeRandomIntArray(arrSize, minValue, maxValue);
+    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных целых чисел в диапазоне [{minValue}, {maxValue}].");
+    PrintIntArray(arrTask2);
+
+    Console.WriteLine($"Сумма элементов массива с нечетными индексами равна {SumOfNumsWithOddIdx(arrTask2)}.");
+}
+
+Task_2();
+
+// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 double DifMinMax(double[] arr) // нахождение разницы между максимальным и минимальным элементов массива
 {
     double min = arr[0];
@@ -74,94 +130,16 @@ double DifMinMax(double[] arr) // нахождение разницы между
     return max - min;
 }
 
-int CountOfEvenNumbers(int[] arr) // считает кол-во четных чисел в массиве.
-{
-    int count = 0;
-
-    for (int i = 0; i < arr.Length; i++)
-    {
-        if (arr[i] % 2 == 0) count ++;
-    }
-
-    return count;
-}
-
-// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
-
-void Task_1()
-{
-    Console.Write("Введите размер массива >: ");
-    int arrSize = Convert.ToInt32(Console.ReadLine());
-    while (arrSize < 0)
-    {
-        Console.WriteLine("ОШИБКА! Размер массива не может быть отрицательным!");
-        Console.Write("Введите размер массива (неотрицательное число) >: ");
-        arrSize = Convert.ToInt32(Console.ReadLine());
-    }
-    
-    int[] arrTask1 = MakeRandomIntArray(arrSize, 100, 999);
-    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных целых чисел в диапазоне [100, 999].");
-    PrintIntArray(arrTask1);
-    Console.WriteLine($"В массиве {CountOfEvenNumbers(arrTask1)} четных элемента(ов).");
-}
-
-// Task_1();
-
-
-// Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
-void Task_2()
-{
-    Console.Write("Введите размер массива >: ");
-    int arrSize = Convert.ToInt32(Console.ReadLine());
-    while (arrSize < 0)
-    {
-        Console.WriteLine("ОШИБКА! Размер массива не может быть отрицательным!");
-        Console.Write("Введите размер массива (неотрицательное число) >: ");
-        arrSize = Convert.ToInt32(Console.ReadLine());
-    }
-    Console.Write("Введите нижнюю границу для генерации чисел >: ");
-    int minValue = Convert.ToInt32(Console.ReadLine());
-
-    Console.Write("Введите верхнюю границу для генерации чисел >: ");
-    int maxValue = Convert.ToInt32(Console.ReadLine());
-    int[] arrTask2 = MakeRandomIntArray(arrSize, minValue, maxValue);
-    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных целых чисел в диапазоне [{minValue}, {maxValue}].");
-}
-
-// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 void Task_3()
 {
-    Console.Write("Введите размер массива >: ");
-    int arrSize = Convert.ToInt32(Console.ReadLine());
-    while (arrSize < 0)
-    {
-        Console.WriteLine("ОШИБКА! Размер массива не может быть отрицательным!");
-        Console.Write("Введите размер массива (неотрицательное число) >: ");
-        arrSize = Convert.ToInt32(Console.ReadLine());
-    }
-
-    Console.Write("Введите максимальное количество знаков до запятой >: ");
-    int maxDigitsBeforeDecimal = Convert.ToInt32(Console.ReadLine());
-    while (maxDigitsBeforeDecimal < 0)
-    {
-        Console.WriteLine("ОШИБКА! Количество знаков до запятой не может быть отрицательным!");
-        Console.Write("Введите максимальное количество знаков до запятой (неотрицательное число) >: ");
-        maxDigitsBeforeDecimal = Convert.ToInt32(Console.ReadLine());
-    }
-
-    Console.Write("Введите количество знаков после запятой >: ");
-    int digitsAfterDecimal = Convert.ToInt32(Console.ReadLine());
-    while (digitsAfterDecimal < 0)
-    {
-        Console.WriteLine("ОШИБКА! Количество знаков после запятой не может быть отрицательным!");
-        Console.Write("Введите количество знаков после запятой (неотрицательное число) >: ");
-        digitsAfterDecimal = Convert.ToInt32(Console.ReadLine());
-    }
+    int arrSize = GetNotANegativeNumber("Введите размер массива");
+    int maxDigitsBeforeDecimal = GetNotANegativeNumber("Введите максимальное количество знаков до запятой");
+    int digitsAfterDecimal = GetNotANegativeNumber("Введите количество знаков после запятой");
     
     double[] arrayTask3 = MakeRandomDoubleArray(arrSize, maxDigitsBeforeDecimal, digitsAfterDecimal);
-    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных вещественных чисел в диапазоне ({-Math.Pow(10,digitsAfterDecimal)}, {Math.Pow(10,digitsAfterDecimal)}) с точностью в {digitsAfterDecimal} знака(ов).");
+    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных вещественных чисел в диапазоне ({-Math.Pow(10,digitsAfterDecimal)}, {Math.Pow(10,digitsAfterDecimal)}) с точностью в {digitsAfterDecimal} знака(ов) после запятой.");
     PrintDoubleArray(arrayTask3);
-    Console.WriteLine("Разница между самым большим и самым малым элементами массива равна " + DifMinMax(arrayTask3));
+    Console.WriteLine($"Разница между самым большим и самым малым элементами массива равна {DifMinMax(arrayTask3)}.");
 }
 
 // Task_3();
