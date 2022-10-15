@@ -48,7 +48,7 @@ void PrintDoubleArray(double[] array) // печать массива, состо
     Console.WriteLine(" }");
 }
 
-int GetNotANegativeNumber(string msg)
+int GetNotANegativeNumber(string msg) // в качестве аргумента принимает строку, которая будет выводиться в консоль (приглашение для ввода информации), метод возвращает целое не отрицательное число
 {
     Console.Write(msg + " >: ");
     int number = Convert.ToInt32(Console.ReadLine());
@@ -146,12 +146,12 @@ void Task_3()
 
 // Дополнительное задание: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. Результат запишите в новом массиве.
 
-int[]  MultOfPairs(int[] arr)
+int[]  MultOfPairs(int[] arr) // метод принимает массив и возвращает новый массив, состоящий из пар чисел исходного массива.
 {
-    int[] resArr = new int[arr.Length / 2 + arr.Length % 2];
+    int[] resArr = new int[arr.Length / 2 + arr.Length % 2]; // если исходный массив имеет четное кол-во эл-ов, то новый будет размером в половину от исходного, если исходный содержит нечетное кол-во эл-ов, то новый будет размером в половину + 1. Делается это для того чтобы в нечетном массиве добавить центральный элемент, для которого нет пары.
     for (int i = 0; i < arr.Length / 2 + arr.Length % 2; i++)
     {
-        if (i != arr.Length - i - 1) resArr[i] = arr[i] + arr[arr.Length - i - 1];
+        if (i != arr.Length - i - 1) resArr[i] = arr[i] + arr[arr.Length - i - 1]; // проверка на то находимся ли мы на центральном элементе нечетного массива.
         else resArr[i] = arr[i];
     }
     return resArr;
