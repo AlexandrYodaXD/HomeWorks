@@ -114,7 +114,7 @@ void Task_2()
     Console.WriteLine($"Сумма элементов массива с нечетными индексами равна {SumOfNumsWithOddIdx(arrTask2)}.");
 }
 
-Task_2();
+// Task_2();
 
 // Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 double DifMinMax(double[] arr) // нахождение разницы между максимальным и минимальным элементов массива
@@ -144,4 +144,29 @@ void Task_3()
 
 // Task_3();
 
-// Дополнительное задание. Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. Результат запишите в новом массиве.
+// Дополнительное задание: Найдите произведение пар чисел в одномерном массиве. Парой считаем первый и последний элемент, второй и предпоследний и т.д. Результат запишите в новом массиве.
+
+int[]  MultOfPairs(int[] arr)
+{
+    int[] resArr = new int[arr.Length / 2 + arr.Length % 2];
+    for (int i = 0; i < arr.Length / 2 + arr.Length % 2; i++)
+    {
+        if (i != arr.Length - i - 1) resArr[i] = arr[i] + arr[arr.Length - i - 1];
+        else resArr[i] = arr[i];
+    }
+    return resArr;
+}
+
+void Task_4()
+{
+    int arrSize = GetNotANegativeNumber("Введите размер массива");
+    
+    int[] arrTask4 = MakeRandomIntArray(arrSize, 10, 99);
+    Console.WriteLine($"Создан массив из {arrSize} элемента(ов) из случайно сгенерированных целых чисел в диапазоне [100, 999].");
+    PrintIntArray(arrTask4);
+    int[] resArrTask4 = MultOfPairs(arrTask4);
+    Console.WriteLine("Массив, содержащий суммы парных элементов исходного массива:");
+    PrintIntArray(resArrTask4);
+}
+
+// Task_4();
