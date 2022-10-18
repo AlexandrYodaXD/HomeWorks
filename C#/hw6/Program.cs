@@ -24,4 +24,4 @@ void IntersectionPoint(double b1, double k1, double b2, double k2)
     Console.WriteLine($"Координаты точки пересечения прямых: x: {x}, y: {y}.");
 }
 
-// Task_2(2, 5, 4, 9);
+// IntersectionPoint(2, 5, 4, 9);
