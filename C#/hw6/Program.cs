@@ -93,9 +93,13 @@ Task_1_Launcher();
 
 void IntersectionPoint(double b1, double k1, double b2, double k2)
 {
-    double x = (b1 - b2) / (k2 - k1);
-    double y = Math.Round(k2 * x + b2, 2);
-    Console.WriteLine($"Координаты точки пересечения прямых: x: {x}, y: {y}.");
+    if (k1 == k2) Console.WriteLine("Прямые паралельны, точка пересечения отсутствует.");
+    else
+    {
+        double x = (b1 - b2) / (k2 - k1);
+        double y = Math.Round(k2 * x + b2, 2);
+        Console.WriteLine($"Координаты точки пересечения прямых: x: {x}, y: {y}.");
+    }
 }
 
-// IntersectionPoint(2, 5, 4, 9);
+// IntersectionPoint(2, 5, 4, 5);
