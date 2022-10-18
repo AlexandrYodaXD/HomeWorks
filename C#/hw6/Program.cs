@@ -31,23 +31,22 @@ int NumbersGreaterThanZeroV3()
 {
     int iterationCounter = 0;
     int count = 0;
-    do
+    while (true)
     {
         Console.Write($"{iterationCounter+1}. Введите число: ");
         int num;
-        string str = Console.ReadLine();
-        if (int.TryParse(str, out num))
+        string inputString = Console.ReadLine();
+        if (int.TryParse(inputString, out num))
         {
             if (num > 0) count++;
             iterationCounter++;
         }
         else
         {
-            Console.WriteLine($"'{str}' - это не число, ввод окончен.");
+            Console.WriteLine($"'{inputString}' - это не число, ввод окончен.");
             break;
         }
     }
-    while (true);
     return count;
 }
 
