@@ -36,9 +36,10 @@ int NumbersGreaterThanZeroV3()
         Console.Write($"{iterationCounter+1}. Введите число: ");
         int num;
         string str = Console.ReadLine();
-        if (int.TryParse(str, out num) && num > 0)
+        if (int.TryParse(str, out num))
         {
-            count++; iterationCounter++;
+            if (num > 0) count++;
+            iterationCounter++;
         }
         else
         {
