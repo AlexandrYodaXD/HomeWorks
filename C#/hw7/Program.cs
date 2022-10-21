@@ -61,9 +61,9 @@ int max = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите до скольки знаков после запятой округлять >: ");
 int round = Convert.ToInt32(Console.ReadLine());
 
-double[,] task1Array = Create2DRandomDoubleArray(rows: m, columns: n, minValue: min, maxValue: max, roundValue: round);
+double[,] resTask1 = Create2DRandomDoubleArray(rows: m, columns: n, minValue: min, maxValue: max, roundValue: round);
 
-Print2DDoubleArray(task1Array);
+Print2DDoubleArray(resTask1);
 // */
 
 
