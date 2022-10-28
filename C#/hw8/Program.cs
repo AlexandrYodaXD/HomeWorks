@@ -267,7 +267,7 @@ void Print3DArrayIntWithIndex(int[,,] array)
 // 11 16 15 06
 // 10 09 08 07
 
-int[,] CreateSpiralArray(int size)
+int[,] CreateSquareSpiralArray(int size) // первый вариант, только для квадратной матрицы
 {
     int[,] array = new int[size, size];
     int current = 1;
@@ -298,14 +298,52 @@ int[,] CreateSpiralArray(int size)
     return array;
 }
 
-void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2)
+int[,] CreateSpiralArray(int rows, int columns = 0) // доработанный вариант для матрицы любого размера
+{
+    if (columns == 0) columns = rows; // если не передать значение columns в параметрах, то создастся квадратная матрица
+    int[,] array = new int[rows, columns];
+
+    for (int x = 0, current = 1; current <= rows * columns; x++)
+    {
+        if(current > rows * columns) break;
+        for (int i = x, j = x; j < columns - x; j++) // заполнение слева направо
+        {
+            array[i, j] = current;
+            current++;
+        }
+
+        if(current > rows * columns) break;
+        for (int i = x + 1, j = columns - x - 1; i < rows - x; i++) // заполнение сверху вниз
+        {
+            array[i, j] = current;
+            current++;
+        }
+
+        if(current > rows * columns) break;
+        for (int i = rows - x - 1, j = columns - x - 2; j >= x; j--) // заполнение справа налево
+        {
+            array[i, j] = current;
+            current++;
+        }
+
+        if(current > rows * columns) break;
+        for (int i = rows - x - 2, j = 0 + x; i >= x + 1; i--) // заполнение снизу вверх
+        {
+            array[i, j] = current;
+            current++;
+        }
+    }
+    return array;
+}
+
+void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2) // печать матрицы с дополнением нулями до fillToSigns знаков.
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (var j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < array.GetLength(1); j++)
             Console.Write(array[i, j].ToString($"D{fillToSigns}") + " ");
         Console.WriteLine();
     }
 }
 
-PrettyPrint2DArrayInt(CreateSpiralArray(9));
+PrettyPrint2DArrayInt(CreateSpiralArray(4, 5));
