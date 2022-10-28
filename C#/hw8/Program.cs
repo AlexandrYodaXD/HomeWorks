@@ -303,35 +303,23 @@ int[,] CreateSpiralArray(int rows, int columns = 0) // доработанный 
     if (columns == 0) columns = rows; // если не передать значение columns в параметрах, то создастся квадратная матрица
     int[,] array = new int[rows, columns];
 
-    for (int x = 0, current = 1; current <= rows * columns; x++)
+    for (int iteration = 0, current = 1; current <= rows * columns; iteration++)
     {
-        if(current > rows * columns) break;
-        for (int i = x, j = x; j < columns - x; j++) // заполнение слева направо
-        {
+        if (current > rows * columns) break;
+        for (int i = iteration, j = iteration; j < columns - iteration; j++, current++) // заполнение слева направо
             array[i, j] = current;
-            current++;
-        }
 
-        if(current > rows * columns) break;
-        for (int i = x + 1, j = columns - x - 1; i < rows - x; i++) // заполнение сверху вниз
-        {
+        if (current > rows * columns) break;
+        for (int i = iteration + 1, j = columns - iteration - 1; i < rows - iteration; i++, current++) // заполнение сверху вниз
             array[i, j] = current;
-            current++;
-        }
 
-        if(current > rows * columns) break;
-        for (int i = rows - x - 1, j = columns - x - 2; j >= x; j--) // заполнение справа налево
-        {
+        if (current > rows * columns) break;
+        for (int i = rows - iteration - 1, j = columns - iteration - 2; j >= iteration; j--, current++) // заполнение справа налево
             array[i, j] = current;
-            current++;
-        }
 
-        if(current > rows * columns) break;
-        for (int i = rows - x - 2, j = 0 + x; i >= x + 1; i--) // заполнение снизу вверх
-        {
+        if (current > rows * columns) break;
+        for (int i = rows - iteration - 2, j = 0 + iteration; i >= iteration + 1; i--, current++) // заполнение снизу вверх
             array[i, j] = current;
-            current++;
-        }
     }
     return array;
 }
@@ -346,4 +334,4 @@ void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2) // печать м
     }
 }
 
-PrettyPrint2DArrayInt(CreateSpiralArray(4, 5));
+PrettyPrint2DArrayInt(CreateSpiralArray(7, 5));
