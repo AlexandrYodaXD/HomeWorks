@@ -326,12 +326,17 @@ int[,] CreateSpiralArray(int rows, int columns = 0) // доработанный 
 
 void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2) // печать матрицы с дополнением нулями до fillToSigns знаков.
 {
+    ConsoleColor[] colors = (ConsoleColor[])ConsoleColor.GetValues(typeof(ConsoleColor));
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.ForegroundColor = colors[(j + i)%15];
             Console.Write(array[i, j].ToString($"D{fillToSigns}") + " ");
+        }
         Console.WriteLine();
     }
+    Console.ResetColor();
 }
 
-PrettyPrint2DArrayInt(CreateSpiralArray(7, 5));
+PrettyPrint2DArrayInt(CreateSpiralArray(9, 9));
