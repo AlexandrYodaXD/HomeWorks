@@ -1,82 +1,16 @@
-﻿void Print2DArrayInt(int[,] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        for (var j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write(array[i, j]);
-            if (j < array.GetLength(1) - 1)
-                Console.Write(", ");
-        }
-        if (i < array.GetLength(0) - 1)
-            Console.WriteLine(",");
-        else Console.WriteLine(".");
-    }
-}
-int[,] Create2DArrayRandomInt(int rows, int columns, int minValue, int maxValue)
-{
-    int[,] array = new int[rows, columns];
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < columns; j++)
-        {
-            array[i, j] = new Random().Next(minValue, maxValue + 1);
-        }
-    }
-    return array;
-}
+﻿/*
+Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+В итоге получается вот такой массив:
+7 4 2 1
+9 5 3 2
+8 4 4 2
+*/
 
-// временные методы для отладки
-int[] MakeRandomIntArray(int size, int minValue, int maxValue) // принимает целое число в качестве размера массива, верхнюю и нижнюю границу для генерации чисел, возвращает массив заданного размера, заполненный случайными числами от нижней до верхней границы чисел включительно.
-{
-    int[] array = new int[size];
-
-    for (int i = 0; i < array.Length; i++)
-    {
-        array[i] = new Random().Next(minValue, maxValue + 1);
-    }
-    return array;
-}
-void PrintIntArray(int[] array) // печать массива, состоящего из int элементов
-{
-    Console.Write("{ ");
-    for (int i = 0; i < array.Length; i++)
-    {
-        Console.Write(array[i]);
-        if (i < array.Length - 1) // ставим запятую после элемента, если это не последний элемент
-            Console.Write(", ");
-    }
-    Console.WriteLine(" }");
-}
-
-// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-// Например, задан массив:
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// В итоге получается вот такой массив:
-// 7 4 2 1
-// 9 5 3 2
-// 8 4 4 2
-
-void Sort1DArrayInt(int[] array)
-{
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        int max = i;
-        for (int j = i + 1; j < array.GetLength(0); j++)
-            if (array[j] > array[max])
-                max = j;
-        if (max != i)
-        {
-            int temp = array[i];
-            array[i] = array[max];
-            array[max] = temp;
-        }
-    }
-}
-
-void Sort2DArrayInt(int[,] array)
+void Sort2DIntArray(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -100,25 +34,30 @@ void Sort2DArrayInt(int[,] array)
     }
 }
 
-// int[,] task1Array = Create2DArrayRandomInt(4, 4, 10, 99);
-// Print2DArrayInt(task1Array);
-// Console.WriteLine();
-// Sort2DArrayInt(task1Array);
-// Console.WriteLine();
-// Print2DArrayInt(task1Array);
+void Task54()
+{
+    int[,] task1Array = Create2DArrayRandomInt(4, 4, 10, 99);
+    System.Console.WriteLine("Изначальный массив:");
+    Print2DIntArray(task1Array);
+    Sort2DIntArray(task1Array);
+    System.Console.WriteLine("Отсортированный массив массив:");
+    Print2DIntArray(task1Array);
+}
+// Task54();
 
 
+/*
+Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 
-// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+Например, задан массив:
 
-// Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+5 2 6 7
 
-// 1 4 7 2
-// 5 9 2 3
-// 8 4 2 4
-// 5 2 6 7
-
-// Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+*/
 
 int FindRowWithMinSum(int[,] array)
 {
@@ -128,30 +67,36 @@ int FindRowWithMinSum(int[,] array)
     {
         int sum = 0;
         for (int j = 0; j < array.GetLength(1); j++)
+        {
             sum += array[i, j];
-        if (minSum == null) minSum = sum; // задаем minSum первоначальное значение (т. е. сумму первой строки);
-                                          //      if (i == 0) minSum = sum; делает то же самое, но в этом случае при инициализации minSum можно было присвоить 0;
-        Console.WriteLine($"Сумма {i + 1} строки равна {sum}."); // для наглядности;
+        }
+        if (minSum == null) minSum = sum; // задаем minSum первоначальное значение (сумму первой строки);
+        Console.WriteLine($"Сумма {i + 1} строки равна {sum}.");
         if (sum < minSum) res = i;
     }
     return res;
 }
 
-// int[,] task2Array = Create2DArrayRandomInt(4, 4, 1, 9);
-// Print2DArrayInt(task2Array);
-// Console.WriteLine();
-// int task2res = FindRowWithMinSum(task2Array);
-// Console.WriteLine();
-// Console.WriteLine($"Наименьшая сумма элементов в {task2res + 1} строке.");
+void Task56()
+{
+    int[,] task2Array = Create2DArrayRandomInt(4, 4, 1, 9);
+    Print2DIntArray(task2Array);
+    int task2res = FindRowWithMinSum(task2Array);
+    Console.WriteLine();
+    Console.WriteLine($"Наименьшая сумма элементов в {task2res + 1} строке.");
+}
+// Task56();
 
+/*
+Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+Например, даны 2 матрицы:
+2 4 | 3 4
+3 2 | 3 3
+Результирующая матрица будет:
+18 20
+15 18
+*/
 
-// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-// Например, даны 2 матрицы:
-// 2 4 | 3 4
-// 3 2 | 3 3
-// Результирующая матрица будет:
-// 18 20
-// 15 18
 int[,] MatrixProduct(int[,] array1, int[,] array2)
 {
     if (array1.GetLength(0) != array2.GetLength(1))
@@ -172,68 +117,101 @@ int[,] MatrixProduct(int[,] array1, int[,] array2)
     return res;
 }
 
-// int[,] task3Array1 = Create2DArrayRandomInt(2, 2, 1, 9);
-// Print2DArrayInt(task3Array1);
-// Console.WriteLine();
-// int[,] task3Array2 = Create2DArrayRandomInt(2, 2, 1, 9);
-// Print2DArrayInt(task3Array2);
-// Console.WriteLine();
-// int[,] task3ProductArray = MatrixProduct(task3Array1, task3Array2);
-// if (task3ProductArray != null) Print2DArrayInt(task3ProductArray);
-
-
-// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
-// Массив размером 2 x 2 x 2
-// 66(0,0,0) 25(0,1,0)
-// 34(1,0,0) 41(1,1,0)
-// 27(0,0,1) 90(0,1,1)
-// 26(1,0,1) 55(1,1,1)
-
-int[] CreateNumbersSeriesArray(int minValue, int maxValue) // создает массив из ряда чисел, maxValue не будет включен;
+void Task58()
 {
-    int[] numberSeries = new int[(maxValue) - minValue];
-    for (int i = minValue; i < maxValue; i++)
+    System.Console.WriteLine("Первая матрица:");
+    int[,] task3Array1 = Create2DArrayRandomInt(2, 2, 1, 9);
+    Print2DIntArray(task3Array1);
+    System.Console.WriteLine("Вторая матрица:");
+    int[,] task3Array2 = Create2DArrayRandomInt(2, 2, 1, 9);
+    Print2DIntArray(task3Array2);
+    int[,] task3ProductArray = MatrixProduct(task3Array1, task3Array2);
+
+    if (task3ProductArray != null)
     {
-        numberSeries[i - minValue] = i;
+        System.Console.WriteLine("Результат произведения матриц:");
+        Print2DIntArray(task3ProductArray);
     }
-    return numberSeries;
 }
+// Task58();
 
-void ShuffleArray(int[] array, int shuffleTimes = 1) // перемешивает массив, необязательный аргумент shuffleTimes отвечает за количество перемешиваний
+
+/*
+Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1)
+*/
+
+/* ShuffleArray перемешивает массив, необязательный аргумент shuffleCount отвечает за количество перемешиваний.
+С логической точки зрения хватит одного перемешивания/прохода по массиву,
+но почему-то хочется добавить возможность перемешивать "сильнее" (человеческий фактор?) */
+void ShuffleArray(int[] array, int shuffleCount = 1) 
 {
-    for (int i = 0; i < (shuffleTimes * array.Length); i++)
+    Random randomNumber = new Random();
+    for (int i = 0; i < array.Length * shuffleCount; i++)
     {
         int index = i % array.Length; // так мы не выйдем за границы индексов массива;
+        int randomIndex = randomNumber.Next(0, array.Length);
+        
+        do randomIndex = randomNumber.Next(0, array.Length);
+        while (index == randomIndex);
+
         int temp = array[index];
-        int randomIndex = new Random().Next(0, array.Length);
         array[index] = array[randomIndex];
         array[randomIndex] = temp;
     }
 }
 
-int[] CreateAnArrayOfNonRepeatingNumbers(int size, int minValue, int maxValue, int shuffleTimes = 1) // создает массив из случайных неповторяющихся чисел
+/* Второй вариант метода для перемешивания массива.
+За идею с проходом до половины массива спасибо Елене :)
+По тестам работает быстрее первого способа, но "хуже перемешивает",
+т. к. оба индекса массива выбираются случайно и участок массива
+с последовательными элементами, например, [...13, 14, 15...] может не попасть под перемешивание */
+void ShuffleArray2(int[] array, int shuffleCount = 1)
 {
-    int[] resultArray = new int[size];
-    int[] numbersSeriesArray = CreateNumbersSeriesArray(minValue, maxValue);
-    ShuffleArray(numbersSeriesArray, shuffleTimes);
-    for (int i = 0; i < size; i++)
+    Random randomNumber = new Random();
+    int halfLenght = array.Length / 2;
+
+    for (int i = 0; i < halfLenght * shuffleCount; i++)
     {
-        resultArray[i] = numbersSeriesArray[i];
+        int firstIndex = randomNumber.Next(0, halfLenght);
+        int secondIndex = randomNumber.Next(halfLenght, array.Length);
+        int temp = array[firstIndex];
+        array[firstIndex] = array[secondIndex];
+        array[secondIndex] = temp;
+    }
+}
+
+// метод создает срез массива
+int[] ArraySlice(int[] array, int start, int amount)
+{
+    int[] resultArray = new int[amount];
+
+    for (int i = 0, m = start; i < amount; i++, m++)
+    {
+        resultArray[i] = array[m];
     }
     return resultArray;
 }
 
-int[,,] Fill3DArrayByNumberSeriesArray(int[] numberSeriesArray) // создание массива 2х2х2 из 8 неповторяющихся двузначных чисел;
+// метод заполняет создает новый массив размера NxNxN и заполняет его числами из массива из аргумента array.
+int[,,] Fill3DArray(int[] array, int size = 3)
 {
-    int[,,] resultArray = new int[2, 2, 2];
-    int index = 0;
-    for (int i = 0; i < resultArray.GetLength(0); i++)
-        for (int j = 0; j < resultArray.GetLength(1); j++)
-            for (int k = 0; k < resultArray.GetLength(2); k++)
+    int[,,] resultArray = new int[size, size, size];
+
+    for (int i = 0, index = 0; i < resultArray.GetLength(0) && index < array.Length; i++)
+    {
+        for (int j = 0; j < resultArray.GetLength(1) && index < array.Length; j++)
+        {
+            for (int k = 0; k < resultArray.GetLength(2) && index < array.Length; k++, index++)
             {
-                resultArray[i, j, k] = numberSeriesArray[index];
-                index++;
+                resultArray[i, j, k] = array[index];
             }
+        }
+    }
 
     return resultArray;
 }
@@ -253,59 +231,38 @@ void Print3DArrayIntWithIndex(int[,,] array)
     }
 }
 
-// int[] numSeriesArr = CreateAnArrayOfNonRepeatingNumbers(size: 8, minValue: 10, maxValue: 100); // массив из 8 неповторяющихся двузначных чисел;
-// PrintIntArray(numSeriesArr);
-// Console.WriteLine();
-// int[,,] task3Array = Fill3DArrayByNumberSeriesArray(numSeriesArr);
-// Print3DArrayIntWithIndex(task3Array);
-
-
-// Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
-// Например, на выходе получается вот такой массив:
-// 01 02 03 04
-// 12 13 14 05
-// 11 16 15 06
-// 10 09 08 07
-
-int[,] CreateSquareSpiralArray(int size) // первый вариант, только для квадратной матрицы
+void Task60()
 {
-    int[,] array = new int[size, size];
-    int current = 1;
-    for (int x = 0; x < (size / 2 + size % 2); x++)
-    {
-        for (int i = x, j = x; j < size - x; j++) // заполнение слева направо
-        {
-            array[i, j] = current;
-            current++;
-        }
-        for (int i = x + 1, j = size - x - 1; i < size - x; i++) // заполнение сверху вниз
-        {
-            array[i, j] = current;
-            current++;
-        }
-        for (int i = size - x - 1, j = size - x - 2; j >= x; j--) // заполнение справа налево
-        {
-            array[i, j] = current;
-            current++;
-        }
-        for (int i = size - x - 2, j = 0 + x; i >= x + 1; i--) // заполнение снизу вверх
-        {
-            array[i, j] = current;
-            current++;
-        }
-        // Console.WriteLine($"Проход №{x+1}. Последнее заполненное число {current-1}.");
-    }
-    return array;
+    int[] twoDigitsNumbers = Enumerable.Range(10, 90).ToArray(); // создается массив двузначных чисел
+    ShuffleArray(twoDigitsNumbers);
+    PrintIntArray(twoDigitsNumbers);
+    int[] arraySlice = ArraySlice(twoDigitsNumbers, 0, 7); // создается срез массива twoDigitsNumbers с 0 по 7 индексы
+                                                           // позже я доработал метод Fill3DArray таким образом,
+                                                           // что в него можно передавать twoDigitsNumbers целиком,
+                                                           // но т.к. ArraySlice уже написан, то пусть будет :)
+    PrintIntArray(arraySlice);
+    int[,,] task3Array = Fill3DArray(arraySlice);
+    Print3DArrayIntWithIndex(task3Array);
 }
+// Task60();
 
-int[,] CreateSpiralArray(int rows, int columns = 0) // доработанный вариант для матрицы любого размера
+
+/*
+Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+Например, на выходе получается вот такой массив:
+01 02 03 04
+12 13 14 05
+11 16 15 06
+10 09 08 07
+*/
+
+int[,] CreateSpiralArray(int rows, int columns = 0)
 {
     if (columns == 0) columns = rows; // если не передать значение columns в параметрах, то создастся квадратная матрица
     int[,] array = new int[rows, columns];
 
     for (int iteration = 0, current = 1; current <= rows * columns; iteration++)
     {
-        if (current > rows * columns) break;
         for (int i = iteration, j = iteration; j < columns - iteration; j++, current++) // заполнение слева направо
             array[i, j] = current;
 
@@ -324,7 +281,9 @@ int[,] CreateSpiralArray(int rows, int columns = 0) // доработанный 
     return array;
 }
 
-void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2) // печать матрицы с дополнением нулями до fillToSigns знаков.
+// Красивая печать матрицы с дополнением нулями до fillToSigns знаков и раскрашиванием чисел цветом.
+// Как говорится, лучше один раз увидеть :)
+void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2)
 {
     ConsoleColor[] colors = {ConsoleColor.Red, ConsoleColor.Yellow, ConsoleColor.Green,
                             ConsoleColor.Cyan, ConsoleColor.Blue, ConsoleColor.Magenta};
@@ -340,4 +299,77 @@ void PrettyPrint2DArrayInt(int[,] array, int fillToSigns = 2) // печать м
     Console.ResetColor();
 }
 
-PrettyPrint2DArrayInt(CreateSpiralArray(9, 7));
+void Task62()
+{
+    int[,] task62Array = CreateSpiralArray(4, 4);
+    PrettyPrint2DArrayInt(task62Array, 2);
+}
+Task62();
+
+
+// общие методы
+void Print2DIntArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (var j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j]);
+            if (j < array.GetLength(1) - 1)
+                Console.Write(", ");
+        }
+        if (i < array.GetLength(0) - 1)
+            Console.WriteLine(",");
+        else Console.WriteLine(".");
+    }
+    Console.WriteLine();
+}
+int[,] Create2DArrayRandomInt(int rows, int columns, int minValue, int maxValue)
+{
+    int[,] array = new int[rows, columns];
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            array[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return array;
+}
+int[] MakeRandomIntArray(int size, int minValue, int maxValue) // принимает целое число в качестве размера массива, верхнюю и нижнюю границу для генерации чисел, возвращает массив заданного размера, заполненный случайными числами от нижней до верхней границы чисел включительно.
+{
+    int[] array = new int[size];
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        array[i] = new Random().Next(minValue, maxValue + 1);
+    }
+    return array;
+}
+void PrintIntArray(int[] array) // печать массива, состоящего из int элементов
+{
+    Console.Write("{ ");
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(array[i]);
+        if (i < array.Length - 1) // ставим запятую после элемента, если это не последний элемент
+            Console.Write(", ");
+    }
+    Console.WriteLine(" }\n");
+}
+void Sort1DIntArray(int[] array) // сортировка одномерного int массива
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        int max = i;
+        for (int j = i + 1; j < array.GetLength(0); j++)
+            if (array[j] > array[max])
+                max = j;
+        if (max != i)
+        {
+            int temp = array[i];
+            array[i] = array[max];
+            array[max] = temp;
+        }
+    }
+}
