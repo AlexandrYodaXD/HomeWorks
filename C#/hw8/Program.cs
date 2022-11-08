@@ -256,9 +256,10 @@ void Task60()
 10 09 08 07
 */
 
-int[,] CreateSpiralArray(int rows, int columns = 0)
+// метод создает спиральную матрицу размером NxM
+int[,] CreateSpiralArray(int rows, int columns = -1)
 {
-    if (columns == 0) columns = rows; // если не передать значение columns в параметрах, то создастся квадратная матрица
+    if (columns == -1) columns = rows; // если не передать значение columns в параметрах, то создастся квадратная матрица
     int[,] array = new int[rows, columns];
 
     for (int iteration = 0, current = 1; current <= rows * columns; iteration++)
