@@ -4,7 +4,7 @@ for x in [False, True]:
     for y in [False, True]:
         for z in [False, True]:
             if (not (x or y or z)) != (not x and not y and not z):
-                print('Утверждение не верно')
+                print('Утверждение не верно.')
                 break
 else:
-    print('Утверждение верно')
+    print('Утверждение верно.')

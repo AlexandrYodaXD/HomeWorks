@@ -6,11 +6,14 @@
 # - 7 -> да
 # - 1 -> нет
 
-inp_num = int(input('Введите номер дня недели: '))
-
-if inp_num in range(6, 8):
-    print('Да')
-elif inp_num in range(1, 6):
-    print('Нет')
-else:
-    print('Недопустимый номер дня недели')
+try:
+    inp_num = int(input('Введите номер дня недели: '))
+    
+    if inp_num in range(6, 8):
+        print('Выходной день.')
+    elif inp_num in range(1, 6):
+        print('Будний день.')
+    else:
+        print('Введен некорректный номер дня недели.')
+except:
+    print('Введены некорректные данные.')
