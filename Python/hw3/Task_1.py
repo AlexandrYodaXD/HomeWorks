@@ -12,7 +12,7 @@ else:
     res = None
 
 print(my_list)
-if res:
+if res != None:
     print(f'Ответ: {res}')
 else:
     print('Колличество элементов с нечетными индексами меньше одного')
