@@ -16,10 +16,14 @@ for i in range(my_list_size):
     my_list.append(random_num)
 
 floats_list = []
+my_list = [1.1, 1.2, 3.1, 5, 10.01] # для проверки на конкретном примере
 
 for item in my_list:
     if isinstance(item, float):
         floats_list.append(item % 1)
+print(floats_list)
 
-res = round(max(floats_list) - min(floats_list), 2)
+res = max(floats_list) - min(floats_list)
+print(max(floats_list), min(floats_list))
+res = round(res, 2)
 print(f'{my_list} => {res}')
