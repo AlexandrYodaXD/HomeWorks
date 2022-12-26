@@ -1,6 +1,6 @@
 from os import path
-from generator import *
-
+import generator
+# функция для добавления данных в результирующий словарь, из которого в последствии сформируется результат (сумма многочленов)
 def add_to_result(data: str):
     data = data.upper()\
         .replace(' ', '')\
@@ -11,7 +11,7 @@ def add_to_result(data: str):
         .replace(' X', ' 1X')\
         .replace('X ', 'X1 ')
     # замена верхних степеней на числа
-    for key, value in degree_int_to_upper_str.items():
+    for key, value in generator.dict_degrees.items():
         while value in data:
             data = data.replace(value, str(key))
     # разбор членов уравнения на составляющие
@@ -27,7 +27,7 @@ def add_to_result(data: str):
         value, key = int(value), int(key)
         dict_result[key] = dict_result.get(key, 0) + value
 
-# функция для сборки уравнения
+# функция для сборки уравнения из словаря
 def create_an_equation_from_dict(members_dict: dict):
     members_list = []
     for key, value in sorted(members_dict.items(), key=lambda x: x[0], reverse=True):
@@ -35,7 +35,7 @@ def create_an_equation_from_dict(members_dict: dict):
             continue
         else:
             coeff = str(value)
-        x = f'X{convert_degree(key)}'
+        x = f'X{generator.convert_degree(key)}'
         members_list.append(coeff + x)
     # сборка строки уравнения
     equation = ' + '.join(members_list) + ' = 0'
@@ -46,18 +46,19 @@ def create_an_equation_from_dict(members_dict: dict):
     return equation 
 
 dict_result = dict()
-run_path = path.abspath(__file__)
-dir_path = run_path[:run_path.rindex('\\') + 1]
 
-with open(dir_path + 'input_1.txt', 'r', encoding='UTF-8') as file:
-    data = file.readline()
-    print(f'Первое уравнение: {data}')
-    add_to_result(data)
+if __name__ == '__main__':
+    run_path = path.abspath(__file__)
+    dir_path = run_path[:run_path.rindex('\\') + 1]
+    with open(dir_path + 'input_1.txt', 'r', encoding='UTF-8') as file:
+        data = file.readline()
+        print(f'Первое уравнение: {data}')
+        add_to_result(data)
 
-with open(dir_path + 'input_2.txt', 'r', encoding='UTF-8') as file:
-    data = file.readline()
-    print(f'Второе уравнение: {data}')
-    add_to_result(data)
+    with open(dir_path + 'input_2.txt', 'r', encoding='UTF-8') as file:
+        data = file.readline()
+        print(f'Второе уравнение: {data}')
+        add_to_result(data)
 
 result = create_an_equation_from_dict(dict_result)
 print(f'Результат сложения: {result}')

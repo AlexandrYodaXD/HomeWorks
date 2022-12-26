@@ -1,19 +1,17 @@
 import os, random
 # запусти модуль для генерации новых файлов с новыми уравнениями
-degree_int_to_upper_str = \
-    {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
+min_degree = 2
+max_degree = 5
 
-# degree_upper_str_to_int = \
-#     {'⁰': 0, '¹': 1, '²': 2, '³': 3, '⁴': 4, '⁵': 5, '⁶': 6, '⁷': 7, '⁸': 8, '⁹': 9}
-
+# функция для конвертации степени
 def convert_degree(degree: int):
     result = ''
     while degree:
-        result = degree_int_to_upper_str[degree % 10] + result
+        result = dict_degrees[degree % 10] + result
         degree //= 10
     return result
 
-# функция для создания строки уравнения
+# функция для создания новой строки уравнения
 def create_an_equation_from_dict(k: int):
     members_list = []
     for i in range(k, -1, -1):
@@ -35,10 +33,10 @@ def create_an_equation_from_dict(k: int):
         .replace('1X', 'X')\
         .replace(' + -', ' - ')\
         + ' = 0'
-    return equation 
+    return equation
 
-min_degree = 2
-max_degree = 5
+dict_degrees = \
+    {0: '⁰', 1: '¹', 2: '²', 3: '³', 4: '⁴', 5: '⁵', 6: '⁶', 7: '⁷', 8: '⁸', 9: '⁹'}
 
 if __name__ == '__main__':
     run_path = os.path.abspath(__file__) # получение абсолютного пути запущенного скрипта
