@@ -2,7 +2,7 @@
 # Пример:
 # Для n=4 -> [2, 2.25, 2.37, 2.44]
 # Сумма 9.06
-
+'''
 number = int(input('Input a number: '))
 res_list = []
 
@@ -11,3 +11,7 @@ for i in range(1, number + 1):
 
 print(res_list)
 print(f'Сумма {sum(res_list)}')
+'''
+number = int(input('Input a number: '))
+res_list = sum([round((1 + 1 / x) ** x, 2) for x in range(1, number + 1)])
+print(f'Сумма {res_list}')
