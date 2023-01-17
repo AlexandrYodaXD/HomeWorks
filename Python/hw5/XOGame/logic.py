@@ -146,31 +146,23 @@ def get_bot_turn(board_: list, p1_sign_: str, bot_sign_: str, difficult_: str) -
     player_winnable_turns = getWinnableTurns(board_, p1_sign_, bot_sign_, 'p1')
     bot_winnable_turns = getWinnableTurns(board_, p1_sign_, bot_sign_, 'bot')
     if difficult_ == 'Easy':
-        bot_turn = choice(possible_turns)
-        x, y = bot_turn
-        return x, y
+        return choice(possible_turns)
     elif difficult_ in ('Normal','Hard'):
         if bot_winnable_turns:
-            bot_turn = choice(bot_winnable_turns)
-            x, y = bot_turn
-            return x, y
+            return choice(bot_winnable_turns)
         elif player_winnable_turns:
-            bot_turn = choice(player_winnable_turns)
-            x, y = bot_turn
-            return x, y
+            return choice(player_winnable_turns)
         elif difficult_ == 'Hard' and board_[1][1] == '5' and len(possible_turns) > 7:
             return 1, 1
         elif difficult_ == 'Hard' and \
             ((board_[0][0] and board_[2][2]) == p1_sign_ or (board_[0][2] and board_[2][0]) == p1_sign_):
-                temp = choice([x for x in [board_[1][0], board_[0][1], board_[1][0], board_[1][1]] if x.isdigit()])
-                return numToCoord(int(temp))
+                bot_turn = choice([x for x in [board_[1][0], board_[0][1], board_[1][0], board_[1][1]] if x.isdigit()])
+                return numToCoord(int(bot_turn))
         elif difficult_ == 'Hard' and len(possible_turns) > 5:
-            temp = choice([x for x in [board_[0][0], board_[0][2], board_[2][0], board_[2][2]] if x.isdigit()])
-            return numToCoord(int(temp))
+            bot_turn = choice([x for x in [board_[0][0], board_[0][2], board_[2][0], board_[2][2]] if x.isdigit()])
+            return numToCoord(int(bot_turn))
         else:
-            bot_turn = choice(possible_turns)
-            x, y = bot_turn
-            return x, y
+            return choice(possible_turns)
 # получение хода для игрока
 def get_player_turn(board_: list, p1_sign_: str) -> tuple:
     possible_turns = getPossibleTurns(board_)
