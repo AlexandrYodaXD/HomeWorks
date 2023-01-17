@@ -1,33 +1,31 @@
 from logic import *
-from time import sleep
 clear() # очистка консоли перед началом
 
 # рабочие переменные
-board = make_board()
+board = make_board() # игровое поле 3х3
 score = [0, 0, 0] # [player_score, draw_score, bot_score]
 # параметры #################################
-player_error_showing_delay = 2 # задержка отображения ошибок ввода игрока
-bot_thinking_delay = 2 # задержка эмуляции думающего бота
+error_delay = 2 # задержка отображения ошибок ввода игрока
+bot_delay = 2 # задержка эмуляции думающего бота
 # выбор игры
-game_type_list = ['[Крестики-Нолики]', '[Алики-Ордики]']
-for n, t in enumerate(game_type_list, start=1):
+gamemode_list = ['[Крестики-Нолики]', '[Алики-Ордики]']
+for n, t in enumerate(gamemode_list, start=1):
     print(f'{n}. {t}')
-showBoardChoise = int(input('Выбери режим игры >: ')) - 1
-showBoard = [showBoardXO, showBoardEgg][showBoardChoise]
+gamemode = int(input('Выбери режим игры >: '))
 # выбор сложности
-showBoard(board, score)
+showBoard(gamemode, board, score)
 difficult_list = ['Easy', 'Normal', 'Hard']
 for n, d in enumerate(difficult_list, start=1):
     print(f'{n}. {d}')
 difficult_choise = int(input('Выбери сложность >: ')) - 1
 difficult = difficult_list[difficult_choise]
 # выбор стороны
-showBoard(board, score)
-if showBoardChoise == 0:
+showBoard(gamemode, board, score)
+if gamemode == 1:
     sings_list1 = ['X', 'O']
     sings_list2 = ['за Крестики', 'за Нолики']
     sings_list_c = [cs['X'], cs['O']]
-elif showBoardChoise == 1:
+elif gamemode == 2:
     sings_list1 = ['A', 'H']
     sings_list2 = ['за Альянс!', 'за Орду!']
     sings_list_c = [cs['A'], cs['H']]
@@ -37,7 +35,7 @@ sign_choise = int(input('Выбери за кого играть >: ')) - 1
 p1_sign = sings_list1[sign_choise]
 bot_sign = sings_list1[sign_choise - 1]
 # выбор первого хода
-showBoard(board, score)
+showBoard(gamemode, board, score)
 start_list = ['Игрок', 'Бот']
 for n, s in  enumerate(start_list, start=1):
     print(f'{n}. {s}')
@@ -54,63 +52,39 @@ while True:
     if player_start:
         while True:
             # ход игрока
-            player_turn = None
-            while not player_turn:
-                showBoard(board, score, last_turn)
-                player_turn = get_player_turn(board, p1_sign)
-                if not player_turn:
-                    sleep(player_error_showing_delay)
-            else:
-                p1_x, p1_y = player_turn
-                board[p1_x][p1_y] = p1_sign
-                last_turn = f'{bc.RED}Игрок{bc.END} поставил {sings_list_c[sign_choise]} на {(3 * p1_x) + p1_y + 1} клетку!'
+            p1_x, p1_y, last_turn = player_turn(gamemode, board, score, last_turn, p1_sign, error_delay)
+            board[p1_x][p1_y] = p1_sign
             # проверка конца игры после хода игрока 
-            if game_over_check(board):
-                score, winner = check_winner(score, p1_sign, bot_sign, game_over_check(board))
+            winner_sign = game_over_check(board)
+            if winner_sign:
+                score, winner = get_winner(score, p1_sign, bot_sign, winner_sign)
                 break
             # ход бота
-            showBoard(board, score, last_turn)
-            print('Железяка думает над ходом...')
-            sleep(bot_thinking_delay)
-            bot_x, bot_y = get_bot_turn(board, p1_sign, bot_sign, difficult)
+            bot_x, bot_y, last_turn = bot_turn(gamemode, board, score, last_turn, p1_sign, bot_sign, difficult, bot_delay)
             board[bot_x][bot_y] = bot_sign
-            last_turn = f'{bc.BLUE}Железяка{bc.END} поставила {sings_list_c[sign_choise - 1]} на {(3 * bot_x) + bot_y + 1} клетку!'
             # проверка конца игры после хода бота
-            if game_over_check(board):
-                score, winner = check_winner(score, p1_sign, bot_sign, game_over_check(board))
+            winner_sign = game_over_check(board)
+            if winner_sign:
+                score, winner = get_winner(score, p1_sign, bot_sign, winner_sign)
                 break
     # бот ходит первым
     else:
         while True:
             # ход бота
-            showBoard(board, score, last_turn)
-            print('Железяка думает над ходом...')
-            sleep(bot_thinking_delay)
-            bot_x, bot_y = get_bot_turn(board, p1_sign, bot_sign, difficult)
+            bot_x, bot_y, last_turn = bot_turn(gamemode, board, score, last_turn, p1_sign, bot_sign, difficult, bot_delay)
             board[bot_x][bot_y] = bot_sign
-            last_turn = f'{bc.BLUE}Железяка{bc.END} поставила {sings_list_c[sign_choise - 1]} на {(3 * bot_x) + bot_y + 1} клетку!'
             # проверка конца игры после хода бота
-            if game_over_check(board):
-                score, winner = check_winner(score, p1_sign, bot_sign, game_over_check(board))
+            winner_sign = game_over_check(board)
+            if winner_sign:
+                score, winner = get_winner(score, p1_sign, bot_sign, winner_sign)
                 break
             # ход игрока
-            player_turn = None
-            while not player_turn:
-                showBoard(board, score, last_turn)
-                player_turn = get_player_turn(board, p1_sign)
-                if not player_turn:
-                    sleep(player_error_showing_delay)
-            else:
-                p1_x, p1_y = player_turn
-                board[p1_x][p1_y] = p1_sign
-                last_turn = f'{bc.RED}Игрок{bc.END} поставил {sings_list_c[sign_choise]} на {(3 * p1_x) + p1_y + 1} клетку!'
+            p1_x, p1_y, last_turn = player_turn(gamemode, board, score, last_turn, p1_sign, error_delay)
+            board[p1_x][p1_y] = p1_sign
             # проверка конца игры после хода игрока
-            if game_over_check(board):
-                score, winer = check_winner(score, p1_sign, bot_sign, game_over_check(board))
+            winner_sign = game_over_check(board)
+            if winner_sign:
+                score, winner = get_winner(score, p1_sign, bot_sign, winner_sign)
                 break
     # рестарт игры с таймером
-    for i in range(3, 0, -1):
-        showBoard(board, score, last_turn)
-        print(f'{bc.BOLD}{bc.PURPLE}{winner}{bc.END}')
-        print(f'Новая игра через {i}... ')
-        sleep(1)
+    restart_timer(gamemode, board, score, last_turn, winner, 3)
