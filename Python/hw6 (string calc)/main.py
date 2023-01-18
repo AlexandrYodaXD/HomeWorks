@@ -1,7 +1,7 @@
-data_1 = '(-1 + (2 * 3)) / (-4 - 5 * (6 - 7))' # 5
+data_1 = '(-1 + (2 * 3)) / (-4 - 5 * (6 - 7))'  # 5
 data_2 = '((-12 / (2 + 4)) * (2 - (6 / 2) + 5))'  # -8
 data_3 = '(25 - 4) / 7 + 5 * (12 - 3)'  # 48
-data_4 = '14 / 2 * (17-8) + 3' # 66
+data_4 = '14 / 2 * (17-8) + 3'  # 66
 data_5 = '1-2*3'
 operations_dict = {
     '+': lambda x, y: int(x) + int(y),
@@ -27,7 +27,6 @@ def parsing(data: str) -> list:
         .replace(' + - ( ', ' - ( ') \
         .replace('  ', ' ')
     # print('2-я замена.', data)
-    xdata = data
     data = data.split()
     # print(f'Предобработка: {data}')
     for i in range(len(data)):
