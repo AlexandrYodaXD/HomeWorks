@@ -17,8 +17,8 @@ showBoard(gamemode, board, score)
 difficult_list = ['Easy', 'Normal', 'Hard']
 for n, d in enumerate(difficult_list, start=1):
     print(f'{n}. {d}')
-difficult_choise = int(input('Выбери сложность >: ')) - 1
-difficult = difficult_list[difficult_choise]
+difficult_choice = int(input('Выбери сложность >: ')) - 1
+difficult = difficult_list[difficult_choice]
 # выбор стороны
 showBoard(gamemode, board, score)
 if gamemode == 1:
@@ -39,8 +39,8 @@ showBoard(gamemode, board, score)
 start_list = ['Игрок', 'Бот']
 for n, s in  enumerate(start_list, start=1):
     print(f'{n}. {s}')
-start_choise = int(input('Выбери кто будет первым ходить >: ')) - 1
-player_start = not bool(start_choise)
+start_choice = int(input('Выбери кто будет первым ходить >: ')) - 1
+player_start = not bool(start_choice)
 #############################################
 # главный цикл
 while True:
