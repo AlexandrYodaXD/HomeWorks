@@ -41,7 +41,6 @@ class Register():
         return True
 
     def save(self):
-        # TODO: переделать
         with open(self._path, 'w', encoding='UTF-8') as file:
             data_lst = []
             for k, v in self._register_dict.items():
@@ -73,6 +72,13 @@ class Register():
         self._unsaved_changes = True
         return True
 
+    def pop_mark(self, subject, student_id):
+        if self._register_dict[subject][student_id]['Оценки']:
+            self._unsaved_changes = True
+            return self._register_dict[subject][student_id]['Оценки'].pop()
+        else:
+            return None
+
     def find_student_id(self, subject, name):
         list_of_found = []
         for index in range(len(self._register_dict[subject])):
@@ -82,10 +88,3 @@ class Register():
 
     def is_changed(self):
         return self._unsaved_changes
-
-    def pop_mark(self, subject, student_id):
-        if self._register_dict[subject][student_id]['Оценки']:
-            self._unsaved_changes = True
-            return self._register_dict[subject][student_id]['Оценки'].pop()
-        else:
-            return None

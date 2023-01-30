@@ -20,7 +20,7 @@ def input_handler(user_input: str):
             ui.show_registers(registers)
             choice = ui.input_validator(int, 'Выберите журнал >: ', len(registers)) - 1
             register_choice = registers[choice]
-            path = 'class registers\\'
+            # path = 'class registers\\'
             file_path = path + register_choice
             if class_register.open(file_path):
                 ui.user_informing('OK', f'Открыт журнал [{register_choice}].')
