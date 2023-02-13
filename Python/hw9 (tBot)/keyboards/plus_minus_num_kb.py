@@ -10,12 +10,12 @@ def get_kb() -> types.ReplyKeyboardMarkup:
 
     buttons = [
         [
-            types.InlineKeyboardButton(text='-25 🍬', callback_data='kb_minus_25'),
-            types.InlineKeyboardButton(text='-5 🍬', callback_data='kb_minus_5'),
-            types.InlineKeyboardButton(text='-1 🍬', callback_data='kb_minus_1'),
-            types.InlineKeyboardButton(text='+1 🍬', callback_data='kb_plus_1'),
-            types.InlineKeyboardButton(text='+5 🍬', callback_data='kb_plus_5'),
-            types.InlineKeyboardButton(text='+25 🍬', callback_data='kb_plus_25'),
+            types.InlineKeyboardButton(text='-25🍬', callback_data='kb_minus_25'),
+            types.InlineKeyboardButton(text='-5🍬', callback_data='kb_minus_5'),
+            types.InlineKeyboardButton(text='-1🍬', callback_data='kb_minus_1'),
+            types.InlineKeyboardButton(text='+1🍬', callback_data='kb_plus_1'),
+            types.InlineKeyboardButton(text='+5🍬', callback_data='kb_plus_5'),
+            types.InlineKeyboardButton(text='+25🍬', callback_data='kb_plus_25'),
         ],
         [
             types.InlineKeyboardButton(text='Подтвердить', callback_data='kb_plusminus_accept'),

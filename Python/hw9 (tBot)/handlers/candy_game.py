@@ -49,8 +49,6 @@ async def ask_total_candy(chat_id):
     user_data[chat_id] = {
         'total_candy': randint(MIN_RND_CANDY, MAX_RND_CANDY),
         'current_round': 0}
-    print(user_data)
-    # user_data[chat_id]['total_candy'] = randint(MIN_RND_CANDY, MAX_RND_CANDY)
     total_candy = user_data[chat_id].get('total_candy')
     candy_word = get_candy_ending(total_candy)
     await bot.send_message(chat_id=chat_id,
@@ -125,18 +123,18 @@ async def set_who_start(callback: types.CallbackQuery):
     elif action == 'kb_who_start_fate':
         await callback.message.edit_text('Азартный, значит? Мне нравится! 👍\n\n'
                                          'Бросим кость! 🎲\n'
-                                         'Чет - <b>ты</b> ходишь первым,\n'
-                                         'Нечет - <b>я</b> хожу первым!')
+                                         'Нечет - <b>ты</b> ходишь первым,\n'
+                                         'Чет - <b>я</b> хожу первым!')
         dice_msg = await callback.message.answer_dice()
         dice_value = dice_msg.dice.value
         await sleep(5)
         if dice_value % 2:
-            await callback.message.answer(f'Выпало <b>{dice_value}</b> - чет.\n'
+            await callback.message.answer(f'Выпало <b>{dice_value}</b> - нечет.\n'
                                           f'Ты ходишь первым!\n'
                                           f'<s><em>Везунчик! 👿</em></s>')
             await lets_start_play(user_id, 'player')
         else:
-            await callback.message.answer(f'Выпало <b>{dice_value}</b> - нечет.\n'
+            await callback.message.answer(f'Выпало <b>{dice_value}</b> - чет.\n'
                                           f'Я хожу первым!\n'
                                           f'<s><em>Правда, ты уже проиграл... 😈</em></s>')
             await lets_start_play(user_id, 'bot')

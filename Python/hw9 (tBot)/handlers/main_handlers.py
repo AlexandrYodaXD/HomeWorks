@@ -1,6 +1,5 @@
 from bot import dp, bot
 from aiogram import types
-from handlers import support_handler, candy_game
 
 
 @dp.message_handler(commands=['start', 'старт'])

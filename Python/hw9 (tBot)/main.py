@@ -1,4 +1,4 @@
-from handlers.main_handlers import dp
+from handlers import dp
 from aiogram import executor
 
 
