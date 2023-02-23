@@ -1,5 +1,5 @@
 from handlers import dp
-from aiogram import executor
+from aiogram.utils import executor
 
 
 async def on_start(_):
