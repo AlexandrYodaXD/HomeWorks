@@ -82,8 +82,7 @@ public class Task_2 {
 
     static TreeMap<String, Integer> getSortedByValue(TreeMap<String, Integer> unsortedMap) {
         ValueComparator vc = new ValueComparator(unsortedMap);
-        TreeMap<String, Integer> sortedMap = new TreeMap<String, Integer>(vc) {
-        };
+        TreeMap<String, Integer> sortedMap = new TreeMap<String, Integer>(vc) {};
         sortedMap.putAll(unsortedMap);
         return sortedMap;
     }
