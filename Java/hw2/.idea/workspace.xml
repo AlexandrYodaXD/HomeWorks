@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6d65609-311a-4fe4-9858-91369d94501f" name="Changes" comment="Java hw2 log files as example added" />
+    <list default="true" id="c6d65609-311a-4fe4-9858-91369d94501f" name="Changes" comment="Java hw2 log files as example added">
+      <change afterPath="$PROJECT_DIR$/../hw6/src/Notebook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hw6/src/Task_1.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,7 +36,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/GeekBrains/HomeWorks/Java/hw2",
+    "last_opened_file_path": "C:/GeekBrains/HomeWorks/Java/hw1",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17578125",
     "project.structure.side.proportion": "0.2",
