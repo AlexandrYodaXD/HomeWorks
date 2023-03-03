@@ -39,6 +39,7 @@ public class Task_1 {
      * @return Возвращает объект Ноутбук с заданными из консоли характеристиками.
      */
     static Notebook getRequestedNotebook(Scanner scanner) {
+        System.out.println("Введи критерии для поиска (минимальные значения). Если критерий не важен, то оставь пустой ввод.");
         return new Notebook(
                 (String) getValidInput("Бренд >: ", "str", scanner), // можно указать только бренд в любом регистре, поиск в дальнейшем ведется по вхождению подстроки в строку
                 (Double) getValidInput("Размер экрана в дюймах >: ", "double", scanner),
@@ -95,7 +96,7 @@ public class Task_1 {
     static Object getValidInput(String msg, String objType, Scanner scanner) {
         while (true) {
             objType = objType.toLowerCase();
-            System.out.print(msg);
+            System.out.print("\t" + msg);
             String input = scanner.nextLine();
             if (input.length() == 0 && objType.equals("resolution")) return new Integer[]{null, null};
             if (input.length() == 0) return null;
