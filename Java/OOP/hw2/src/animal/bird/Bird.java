@@ -2,7 +2,7 @@ package animal.bird;
 
 import animal.Animal;
 
-public abstract class Bird extends Animal {
+public abstract class Bird extends Animal implements Fly{
     protected int flightAltitude;
 
     public Bird(int growth, int weight, String eyeColor, int flightAltitude) {
@@ -10,7 +10,7 @@ public abstract class Bird extends Animal {
         this.flightAltitude = flightAltitude;
     }
 
-    protected void fly(){
+    protected void showFly(){
         System.out.printf("Я лечу на %s метрах.", flightAltitude);
     }
 }

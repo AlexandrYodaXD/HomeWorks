@@ -4,7 +4,7 @@ import animal.petAnimal.Pet;
 
 import java.time.LocalDate;
 
-public class Dog extends Pet {
+public class Dog extends Pet implements Train{
     private boolean trained;
 
     public Dog(int growth, int weight, String eyeColor, String name, String breed, boolean vaccinated,
@@ -23,23 +23,18 @@ public class Dog extends Pet {
     }
 
     @Override
-    public String getAffection() {
-        return "Виляет хвостом.";
-    }
-
-    @Override
     public String toString() {
         return super.toString() +
                 ", наличие дрессировки: " + (trained ? "есть" : "нет");
     }
 
-    public void train(){
-        if (!trained){
-            trained = true;
-            System.out.printf("Теперь %s дрессированная пёс!", this.name);
-        }
-        else {
-            System.out.printf("%s уже был дрессированным псом!", this.name);
-        }
+    @Override
+    public String train(){
+        return "дрессироваться";
+    }
+
+    @Override
+    public String showAffection() {
+        return "проявлять ласку, виляя хвостом";
     }
 }

@@ -4,7 +4,7 @@ import animal.Animal;
 
 import java.time.LocalDate;
 
-public abstract class Pet extends Animal {
+public abstract class Pet extends Animal implements ShowAffection{
 
     protected String name;
     protected String breed;
@@ -21,8 +21,6 @@ public abstract class Pet extends Animal {
         this.coatColor = coatColor;
         this.dateOfBirth = dateOfBirth;
     }
-
-    public abstract String getAffection();
 
     @Override
     public String toString() {

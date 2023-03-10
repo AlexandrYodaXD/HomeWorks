@@ -11,4 +11,9 @@ public class Chicken extends Bird {
     public String getASound() {
         return "Куд-кудах!";
     }
+
+    @Override
+    public String fly() {
+        return "летать, но очень невысоко";
+    }
 }

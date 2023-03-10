@@ -9,6 +9,11 @@ public class Stork extends Bird {
 
     @Override
     public String getASound() {
-        return "Иуиуиуиу!";
+        return "Иииииууууу!";
+    }
+
+    @Override
+    public String fly() {
+        return "летать";
     }
 }
