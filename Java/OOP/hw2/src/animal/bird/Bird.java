@@ -1,6 +1,6 @@
-package Animal.Bird;
+package animal.bird;
 
-import Animal.Animal;
+import animal.Animal;
 
 public abstract class Bird extends Animal {
     protected int flightAltitude;

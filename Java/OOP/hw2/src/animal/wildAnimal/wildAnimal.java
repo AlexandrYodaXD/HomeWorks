@@ -1,6 +1,6 @@
-package Animal.wildAnimal;
+package animal.wildAnimal;
 
-import Animal.Animal;
+import animal.Animal;
 
 import java.time.LocalDate;
 

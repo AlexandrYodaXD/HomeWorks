@@ -1,10 +1,12 @@
-import Animal.Animal;
-import Animal.petAnimal.Cat.Cat;
-import Animal.petAnimal.Dog.Dog;
-import Zoo.Zoo;
+import animal.Animal;
+import animal.petAnimal.Cat.Cat;
+import animal.petAnimal.dog.Dog;
+import zoo.Zoo;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
@@ -55,7 +57,7 @@ public class Program {
         System.out.println("\t0. Отмена");
         System.out.println("Выбери действие >: ");
 
-        HashMap<String, Object> properties = new HashMap<>();
+        Map<String, Object> properties = new HashMap<>();
         int input = scanner.nextInt();
 
         switch (input){
@@ -116,7 +118,7 @@ public class Program {
         return map;
     }
 
-    static Animal getNewCat(HashMap<String, Object> properties){
+    static Animal getNewCat(Map<String, Object> properties){
         return new Cat((int) properties.get("growth"),
                 (int) properties.get("weight"),
                 (String) properties.get("eyeColor"),
@@ -128,7 +130,7 @@ public class Program {
                 (boolean) properties.get("presenceOfWool"));
     }
 
-    static Animal getNewDog(HashMap<String, Object> properties){
+    static Animal getNewDog(Map<String, Object> properties){
         return new Cat((int) properties.get("growth"),
                 (int) properties.get("weight"),
                 (String) properties.get("eyeColor"),

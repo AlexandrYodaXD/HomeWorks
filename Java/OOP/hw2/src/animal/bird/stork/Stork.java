@@ -1,6 +1,6 @@
-package Animal.Bird.Stork;
+package animal.bird.stork;
 
-import Animal.Bird.Bird;
+import animal.bird.Bird;
 
 public class Stork extends Bird {
     public Stork(int growth, int weight, String eyeColor, int flightAltitude) {

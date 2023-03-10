@@ -1,6 +1,6 @@
-package Animal.petAnimal;
+package animal.petAnimal;
 
-import Animal.Animal;
+import animal.Animal;
 
 import java.time.LocalDate;
 
