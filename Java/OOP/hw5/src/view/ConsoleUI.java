@@ -54,7 +54,7 @@ public class ConsoleUI implements View {
             case "0" -> {
                 return false;
             }
-            default -> this.infoMessages.add("ОШИБКА: Команда не распознана.");
+            default -> this.infoMessages.add("ОШИБКА: Команда не распознана.\n");
         }
         return !this.presenter.isOpened();
     }
@@ -73,7 +73,7 @@ public class ConsoleUI implements View {
         } else {
             try {
                 this.presenter.createFile(fileName);
-                this.infoMessages.add(String.format("Файл \"%s.txt\" успешно создан!", fileName));
+                this.infoMessages.add(String.format("Файл \"%s.txt\" успешно создан!\n", fileName));
                 this.presenter.openFile(fileName);
                 return false;
             } catch (Exception e) {
@@ -91,7 +91,7 @@ public class ConsoleUI implements View {
         try {
             if (choice != -1) {
                 this.presenter.openFile(filesNames.get(choice));
-                this.infoMessages.add(String.format("Файл \"%s\" успешно открыт!", choice));
+                this.infoMessages.add(String.format("Файл \"%s\" успешно открыт!\n", filesNames.get(choice)));
             }
             return false;
         } catch (Exception e) {
@@ -132,29 +132,29 @@ public class ConsoleUI implements View {
                 try {
                     noteMenu(this.presenter.getContent().size() - 1);
                 } catch (Exception e) {
-                    infoMessages.add("Список записей пуст, невозможно получить последнюю запись.");
+                    infoMessages.add("Список записей пуст, невозможно получить последнюю запись.\n");
                 }
             }
             case "3" -> {
                 this.presenter.addNote(getNewNote());
-                infoMessages.add("Запись добавлена!");
+                infoMessages.add("Запись добавлена!\n");
             }
             case "9" -> {
                 if (this.presenter.isUnsaved()) {
                     try {
                         this.presenter.saveChanges();
-                        this.infoMessages.add("Файл успешно сохранён!");
+                        this.infoMessages.add("Файл успешно сохранён!\n");
                     } catch (Exception e) {
                         this.infoMessages.add(e.getMessage());
                     }
                 } else {
-                    this.infoMessages.add("ОШИБКА: Команда не распознана.");
+                    this.infoMessages.add("ОШИБКА: Команда не распознана.\n");
                 }
             }
             case "0" -> {
                 return exit();
             }
-            default -> this.infoMessages.add("ОШИБКА: Команда не распознана.");
+            default -> this.infoMessages.add("ОШИБКА: Команда не распознана.\n");
         }
         return true;
     }
@@ -166,7 +166,7 @@ public class ConsoleUI implements View {
             if (notes.isEmpty()) {
                 this.infoMessages.add("Список записей пуст.\n");
             } else {
-                int choice = this.flipMenu("=====Все заметки=====\nВыберите заметку:", notes);
+                int choice = this.flipMenu("=====Все записи=====\nВыберите запись:", notes);
                 if (choice != -1) {
                     //noinspection StatementWithEmptyBody
                     while (noteMenu(choice)) ;
@@ -181,35 +181,31 @@ public class ConsoleUI implements View {
         return true;
     }
 
-    private boolean noteMenu(int index) {
-        try {
-            String noteText = this.presenter.getContent().get(index);
-            this.infoMessages.add(noteText + "\n");
-            clearConsole();
-            showInfoMessages();
-            print(String.format("=====Меню работы с записью #%d=====\n", index + 1));
-            print("\t1. Изменить запись\n");
-            print("\t2. Удалить запись\n");
-            print("\t0. Назад\n");
+    private boolean noteMenu(int index) throws Exception {
+        String noteText = this.presenter.getContent().get(index);
+        this.infoMessages.add(noteText + "\n");
+        clearConsole();
+        showInfoMessages();
+        print(String.format("=====Меню работы с записью #%d=====\n", index + 1));
+        print("\t1. Изменить запись\n");
+        print("\t2. Удалить запись\n");
+        print("\t0. Назад\n");
 
-            String choice = this.getCommand();
+        String choice = this.getCommand();
 
-            switch (choice) {
-                case "1" -> {
-                    this.presenter.replaceNote(index, getNewNote());
-                    this.infoMessages.add("Запись изменена!\n");
-                }
-                case "2" -> {
-                    this.presenter.removeNote(index);
-                    this.infoMessages.add("Запись удалена!\n");
-                    return false;
-                }
-                case "0" -> {
-                    return false;
-                }
+        switch (choice) {
+            case "1" -> {
+                this.presenter.replaceNote(index, getNewNote());
+                this.infoMessages.add("Запись изменена!\n");
             }
-        } catch (Exception e) {
-            this.infoMessages.add(e.getMessage());
+            case "2" -> {
+                this.presenter.removeNote(index);
+                this.infoMessages.add("Запись удалена!\n");
+                return false;
+            }
+            case "0" -> {
+                return false;
+            }
         }
         return true;
     }
@@ -244,7 +240,7 @@ public class ConsoleUI implements View {
             print("\t0. Назад\n");
             // Показываем номер текущей страницы и общее количество страниц, если есть куда листать.
             if (list.size() > menuSize) {
-                print(String.format("[Страница %d/%d]\n", currentPage + 1, list.size() / menuSize));
+                print(String.format("[Страница %d/%d]\n", currentPage + 1, list.size() / menuSize + 1));
             }
 
             String choice = this.getCommand();
@@ -262,7 +258,7 @@ public class ConsoleUI implements View {
                 case "0" -> {
                     return -1;
                 }
-                default -> this.infoMessages.add("ОШИБКА: Команда не распознана.");
+                default -> this.infoMessages.add("ОШИБКА: Команда не распознана.\n");
             }
         }
     }
@@ -320,7 +316,7 @@ public class ConsoleUI implements View {
                     case "3" -> {
                         return true;
                     }
-                    default -> this.infoMessages.add("ОШИБКА: Команда не распознана.");
+                    default -> this.infoMessages.add("ОШИБКА: Команда не распознана.\n");
                 }
             }
         }
