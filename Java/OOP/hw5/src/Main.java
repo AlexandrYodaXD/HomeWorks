@@ -9,10 +9,10 @@ JSON или реализовать возможность удаления ил�
 
 import model.Notepad;
 import presenter.Presenter;
-import view.ConsoleUI;
+import view.consoleUI.ConsoleUI;
 import view.View;
 
-public class Program {
+public class Main {
     public static void main(String[] args) {
         View view = new ConsoleUI();
         Notepad notepad = new Notepad();

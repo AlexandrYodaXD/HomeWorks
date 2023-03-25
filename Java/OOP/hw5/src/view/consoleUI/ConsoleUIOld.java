@@ -1,16 +1,18 @@
-package view;
+package view.consoleUI;
 
+import model.Note;
 import presenter.Presenter;
+import view.View;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ConsoleUI implements View {
+public class ConsoleUIOld implements View {
     Scanner scanner;
     Presenter presenter;
     ArrayList<String> infoMessages = new ArrayList<>();
 
-    public ConsoleUI() {
+    public ConsoleUIOld() {
         this.scanner = new Scanner(System.in);
     }
 
@@ -21,7 +23,7 @@ public class ConsoleUI implements View {
     public void start() {
         //noinspection StatementWithEmptyBody
         while (startMenu()) ;
-        if(presenter.isOpened()){
+        if(presenter.fileIsOpened()){
             //noinspection StatementWithEmptyBody
             while (workWithFileMenu()) ;
         }
@@ -56,7 +58,7 @@ public class ConsoleUI implements View {
             }
             default -> this.infoMessages.add("ОШИБКА: Команда не распознана.\n");
         }
-        return !this.presenter.isOpened();
+        return !this.presenter.fileIsOpened();
     }
 
     private boolean createFileMenu() {
@@ -72,9 +74,9 @@ public class ConsoleUI implements View {
             return false;
         } else {
             try {
-                this.presenter.createFile(fileName);
+                this.presenter.createFile("src/notepads", fileName);
                 this.infoMessages.add(String.format("Файл \"%s.txt\" успешно создан!\n", fileName));
-                this.presenter.openFile(fileName);
+                this.presenter.openFile("src/notepads", fileName);
                 return false;
             } catch (Exception e) {
                 this.infoMessages.add(e.getMessage());
@@ -86,11 +88,11 @@ public class ConsoleUI implements View {
     private boolean openFileMenu() {
         clearConsole();
         showInfoMessages();
-        ArrayList<String> filesNames = this.presenter.getAllFilesNames();
+        ArrayList<String> filesNames = (ArrayList<String>) this.presenter.getAllFilesNames("src/notepads");
         int choice = flipMenu("=====Меню выбора файла=====\nВыберите файл:", filesNames);
         try {
             if (choice != -1) {
-                this.presenter.openFile(filesNames.get(choice));
+                this.presenter.openFile("src/notepads", filesNames.get(choice));
                 this.infoMessages.add(String.format("Файл \"%s\" успешно открыт!\n", filesNames.get(choice)));
             }
             return false;
@@ -130,14 +132,19 @@ public class ConsoleUI implements View {
             }
             case "2" -> {
                 try {
-                    noteMenu(this.presenter.getContent().size() - 1);
+                    noteMenu(this.presenter.getAllNotes().size() - 1);
                 } catch (Exception e) {
                     infoMessages.add("Список записей пуст, невозможно получить последнюю запись.\n");
                 }
             }
             case "3" -> {
-                this.presenter.addNote(getNewNote());
-                infoMessages.add("Запись добавлена!\n");
+                try {
+                    this.presenter.addNote(getNewNote());
+                    infoMessages.add("Запись добавлена!\n");
+
+                }catch (Exception e){
+                    print(e.getMessage());
+                }
             }
             case "9" -> {
                 if (this.presenter.isUnsaved()) {
@@ -161,12 +168,17 @@ public class ConsoleUI implements View {
 
     private boolean allNotesMenu() {
         try {
-            ArrayList<String> notes = this.presenter.getContent();
+            ArrayList<Note> notes = this.presenter.getAllNotes();
+            ArrayList<String> notesContents = new ArrayList<>();
+            for (Note note :
+                    notes) {
+                notesContents.add(note.getContent());
+            }
 
             if (notes.isEmpty()) {
                 this.infoMessages.add("Список записей пуст.\n");
             } else {
-                int choice = this.flipMenu("=====Все записи=====\nВыберите запись:", notes);
+                int choice = this.flipMenu("=====Все записи=====\nВыберите запись:", notesContents);
                 if (choice != -1) {
                     //noinspection StatementWithEmptyBody
                     while (noteMenu(choice)) ;
@@ -182,7 +194,7 @@ public class ConsoleUI implements View {
     }
 
     private boolean noteMenu(int index) throws Exception {
-        String noteText = this.presenter.getContent().get(index);
+        String noteText = this.presenter.getAllNotes().get(index).getContent();
         this.infoMessages.add(noteText + "\n");
         clearConsole();
         showInfoMessages();

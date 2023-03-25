@@ -1,10 +1,12 @@
 package presenter;
 
+import model.Note;
 import model.Notepad;
 import view.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Presenter {
     private final Notepad notepad;
@@ -14,36 +16,35 @@ public class Presenter {
         view.setPresenter(this);
     }
 
-    public void openFile(String fileName) throws IOException{
-        notepad.open(fileName);
-        notepad.read();
+    public void openFile(String folderPath, String fileName) throws IOException{
+        notepad.open(folderPath, fileName);
     }
 
-    public void createFile(String fileName) throws IOException {
-        notepad.createFile(fileName);
+    public void createFile(String folderPath, String fileName) throws IOException {
+        notepad.create(folderPath, fileName);
     }
 
-    public ArrayList<String> getAllFilesNames() {
-        return notepad.getAllFilesNames();
+    public List<String> getAllFilesNames(String folderPath) {
+        return notepad.getAllTXTFilesNames(folderPath);
     }
 
-    public ArrayList<String> getContent() throws Exception {
-        try {
-            return notepad.getCash();
-        }catch (Exception e){
-            throw new Exception("Cash пуст");
-        }
+    public ArrayList<Note> getAllNotes() throws NullPointerException {
+        return (ArrayList<Note>) notepad.getAllNotes();
     }
 
-    public boolean isOpened() {
+    public boolean fileIsOpened() {
         return notepad.isOpened();
     }
 
-    public String getFileName() throws IOException {
-        return notepad.getFileName();
+    public String getFileName() {
+        try {
+            return notepad.getFileName();
+        } catch (Exception e){
+            return "N/A";
+        }
     }
 
-    public void replaceNote(int index, String newNote) {
+    public void replaceNote(int index, String newNote) throws IOException {
         notepad.replace(index, newNote);
     }
 
@@ -51,7 +52,7 @@ public class Presenter {
         return notepad.isUnsaved();
     }
 
-    public void removeNote(int index) {
+    public void removeNote(int index) throws IOException {
         notepad.remove(index);
     }
 
@@ -59,7 +60,7 @@ public class Presenter {
         notepad.save();
     }
 
-    public void addNote(String newNote) {
+    public void addNote(String newNote) throws IOException {
         notepad.add(newNote);
     }
 }
