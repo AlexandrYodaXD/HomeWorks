@@ -55,6 +55,9 @@ public class Presenter {
     public void removeNote(int index) throws IOException {
         notepad.remove(index);
     }
+    public void removeNote(Note note) throws IOException {
+        notepad.remove(note);
+    }
 
     public void saveChanges() throws IOException {
         notepad.save();

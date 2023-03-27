@@ -87,6 +87,14 @@ public class Notepad {
         }
     }
 
+    public void remove(Note note) throws IOException{
+        if (!isOpened()) throw new IOException("ОШИБКА: Невозможно удалить запись, записная книга не открыта.");
+        else {
+            notes.remove(note);
+            this.unsavedChanges = true;
+        }
+    }
+
     public void replace(int index, String text) throws IOException {
 
         if (!isOpened()) throw new IOException("ОШИБКА: Невозможно заменить запись, записная книга не открыта.");
@@ -111,4 +119,5 @@ public class Notepad {
     public boolean isUnsaved() {
         return unsavedChanges;
     }
+
 }
