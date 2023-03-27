@@ -7,6 +7,9 @@ import view.consoleUI.notifications.NoticeType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс простого меню без листания
+ */
 public class SimpleMenu extends Menu {
     protected final List<Command> commands = new ArrayList<>();
     public SimpleMenu(String menuDescription, boolean oneTimeLoop) {

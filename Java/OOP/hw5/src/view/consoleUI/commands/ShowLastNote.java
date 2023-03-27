@@ -2,9 +2,13 @@ package view.consoleUI.commands;
 
 import model.Note;
 import view.consoleUI.menu.Menu;
+import view.consoleUI.notifications.NoticeType;
 
 import java.util.List;
 
+/**
+ * Команда для выбора последней записи в блокноте
+ */
 public class ShowLastNote extends Command {
     Note note;
 
@@ -17,16 +21,16 @@ public class ShowLastNote extends Command {
     }
 
     @Override
-    public void execute(Menu menu) {
-        if (note != null){
-            System.out.println("TEST: " + note.getContent()); // для теста
-        } else {
-            System.out.println("Нуль при попытке показать последнюю запись");
-        }
+    public String getDescription() {
+        return "Показать последнюю запись";
     }
 
     @Override
-    public String getDescription() {
-        return "Показать последнюю запись";
+    public void execute(Menu menu) {
+        if (note != null){
+            new OpenNote(note).execute(menu);
+        } else {
+            notifier.add("Невозможно показать последнюю запись, запись отсутствует", NoticeType.ERROR);
+        }
     }
 }

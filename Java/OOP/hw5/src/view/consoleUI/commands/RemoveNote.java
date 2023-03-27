@@ -14,16 +14,18 @@ public class RemoveNote extends Command {
     }
 
     @Override
-    public void execute(Menu menu) {
-        try {
-            presenter.removeNote(note);
-        } catch (IOException e) {
-            notifier.add(e.getMessage(), NoticeType.ERROR);
-        }
+    public String getDescription() {
+        return "Удалить запись";
     }
 
     @Override
-    public String getDescription() {
-        return "Удалить запись";
+    public void execute(Menu menu) {
+        try {
+            presenter.removeNote(note);
+            notifier.add("Запись успешно удалена!", NoticeType.OK);
+            menu.stop();
+        } catch (IOException e) {
+            notifier.add(e.getMessage(), NoticeType.ERROR);
+        }
     }
 }

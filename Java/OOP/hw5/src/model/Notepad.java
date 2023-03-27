@@ -1,36 +1,32 @@
 package model;
 
-import model.fileUtils.FileUtils;
 import model.fileUtils.FileWorker;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, отвечающий за работу с блокнотом
+ */
 public class Notepad {
     private List<Note> notes;
-    private boolean unsavedChanges = false;
+    private int hash;
     private FileWorker fileWorker;
 
-    public List<String> getAllTXTFilesNames(String folderPath) {
-        return FileUtils.getAllFilesNames(folderPath, ".txt");
-    }
-
     public void open(String folderPath, String fileName) throws IOException {
-        if (!unsavedChanges) {
-            if (!fileName.endsWith(".txt")) {
-                fileName = fileName + ".txt";
-            }
-            this.fileWorker = new FileWorker(folderPath, fileName);
-            List<String> data = fileWorker.read();
-            notes = new ArrayList<>();
-
-            for (String noteText : data) {
-                notes.add(new Note(noteText));
-            }
-        } else {
-            throw new IllegalStateException("ОШИБКА: Нельзя открыть новый файл, в текущем файле есть несохраненные изменения.");
+        if (!fileName.endsWith(".txt")) {
+            fileName = fileName + ".txt";
         }
+        this.fileWorker = new FileWorker(folderPath, fileName);
+        List<String> data = fileWorker.read();
+        this.notes = new ArrayList<>();
+
+        for (String noteText : data) {
+            this.notes.add(new Note(noteText));
+        }
+
+        this.hash = notes.hashCode();
     }
 
     public boolean isOpened() {
@@ -38,26 +34,17 @@ public class Notepad {
     }
 
     public void create(String folderPath, String fileName) throws IOException {
-        if (!unsavedChanges) {
-            if (!fileName.endsWith(".txt")) {
-                fileName = fileName + ".txt";
-            }
-            this.fileWorker = new FileWorker(folderPath, fileName);
-
-            fileWorker.create(folderPath, fileName);
-        } else {
-            throw new IllegalStateException("ОШИБКА: Нельзя создать новый файл, в текущем файле есть несохраненные изменения.");
+        if (!fileName.endsWith(".txt")) {
+            fileName = fileName + ".txt";
         }
+        this.fileWorker = new FileWorker(folderPath, fileName);
+
+        fileWorker.create(folderPath, fileName);
     }
 
-
-    public String getFileName() throws IOException {
+    public String getNotepadName() throws IOException {
         if (isOpened()) return fileWorker.getFileName();
         else throw new IOException("ОШИБКА: невозможно получить имя файла, файл не открыт.");
-    }
-
-    public List<String> getAllTxtFilesNames() throws IOException{
-        return fileWorker.getAllFilesNames(".txt");
     }
 
     public void save() throws IOException {
@@ -68,14 +55,13 @@ public class Notepad {
         }
 
         fileWorker.write(buffer);
-        unsavedChanges = false;
+        this.hash = notes.hashCode();
     }
 
-    public void add(String text) throws IOException {
+    public void add(Note note) throws IOException {
         if (!isOpened()) throw new IOException("ОШИБКА: Невозможно добавить запись, записная книга не открыта.");
         else {
-            notes.add(new Note(text));
-            unsavedChanges = true;
+            notes.add(note);
         }
     }
 
@@ -83,7 +69,6 @@ public class Notepad {
         if (!isOpened()) throw new IOException("ОШИБКА: Невозможно удалить запись, записная книга не открыта.");
         else {
             notes.remove(index);
-            this.unsavedChanges = true;
         }
     }
 
@@ -91,7 +76,6 @@ public class Notepad {
         if (!isOpened()) throw new IOException("ОШИБКА: Невозможно удалить запись, записная книга не открыта.");
         else {
             notes.remove(note);
-            this.unsavedChanges = true;
         }
     }
 
@@ -100,12 +84,7 @@ public class Notepad {
         if (!isOpened()) throw new IOException("ОШИБКА: Невозможно заменить запись, записная книга не открыта.");
         else {
             notes.get(index).setContent(text);
-            this.unsavedChanges = true;
         }
-    }
-
-    public String getNote(int index){
-        return notes.get(index).getContent();
     }
 
     public List<Note> getAllNotes() throws NullPointerException {
@@ -117,7 +96,12 @@ public class Notepad {
     }
 
     public boolean isUnsaved() {
-        return unsavedChanges;
+        return hash != notes.hashCode();
     }
 
+    public void reset(){
+        this.notes = null;
+        this.fileWorker = null;
+        this.hash = 0;
+    }
 }

@@ -3,7 +3,10 @@ package view.consoleUI.commands;
 import view.consoleUI.menu.CreationFileMenu;
 import view.consoleUI.menu.Menu;
 
-public class CreateFileCreationMenu extends Command {
+/**
+ * Команда для создания файла
+ */
+public class CreateFile extends Command {
     @Override
     public String getDescription() {
         return "Создать файл";
@@ -11,8 +14,8 @@ public class CreateFileCreationMenu extends Command {
 
     @Override
     public void execute(Menu menu) {
+        menu.stop();
         CreationFileMenu creationFileMenu = new CreationFileMenu("Меню создания файла", false);
         creationFileMenu.run();
-        menu.stop();
     }
 }

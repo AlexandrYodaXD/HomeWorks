@@ -7,6 +7,9 @@ import view.View;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Старый класс консольного интерфейса. В настоящее время не используется, оставил на память.
+ */
 public class ConsoleUIOld implements View {
     Scanner scanner;
     Presenter presenter;
@@ -139,7 +142,7 @@ public class ConsoleUIOld implements View {
             }
             case "3" -> {
                 try {
-                    this.presenter.addNote(getNewNote());
+//                    this.presenter.addNote(getNewNote());
                     infoMessages.add("Запись добавлена!\n");
 
                 }catch (Exception e){

@@ -6,7 +6,10 @@ import view.consoleUI.Notifier;
 
 import java.util.Scanner;
 
-public abstract class Menu{
+/**
+ * Базовый класс меню
+ */
+public abstract class Menu {
     protected String title;
     protected final Notifier notifier = ConsoleUI.notifier;
     protected final Scanner scanner = ConsoleUI.scanner;
@@ -15,7 +18,7 @@ public abstract class Menu{
 
     public Menu(String title, boolean oneTimeLoop) {
         this.title = title;
-        if (oneTimeLoop){
+        if (oneTimeLoop) {
             running = false;
         }
     }
@@ -24,11 +27,19 @@ public abstract class Menu{
         System.out.println("===== " + title + " =====");
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     protected void clearConsole() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
 
-    public void stop(){
+    public void stop() {
         running = false;
     }
 

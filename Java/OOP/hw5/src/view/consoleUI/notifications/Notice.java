@@ -1,5 +1,8 @@
 package view.consoleUI.notifications;
 
+/**
+ * Класс уведомлений для пользователя
+ */
 public class Notice {
     private final String text;
     private final int type;

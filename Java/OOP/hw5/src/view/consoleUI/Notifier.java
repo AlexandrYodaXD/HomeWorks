@@ -5,6 +5,9 @@ import view.consoleUI.notifications.Notice;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, работающий с уведомлениями (Notice) для пользователя
+ */
 public class Notifier {
     private final List<Notice> noticeList;
 

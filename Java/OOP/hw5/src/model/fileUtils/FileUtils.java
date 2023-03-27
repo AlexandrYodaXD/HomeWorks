@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс со статическими методами для работы с файлами
+ */
 public class FileUtils {
 
     public static List<String> read(String filePath) throws IOException {

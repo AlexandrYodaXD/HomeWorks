@@ -1,5 +1,8 @@
 package view.consoleUI.notifications;
 
+/**
+ * Абстрактный класс, содержащий статичные идентификаторы типов уведомлений
+ */
 public abstract class NoticeType {
     public static int INFO = 1;
     public static int OK = 2;

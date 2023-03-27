@@ -4,6 +4,9 @@ import model.Note;
 import view.consoleUI.ConsoleUI;
 import view.consoleUI.notifications.NoticeType;
 
+/**
+ * Класс меню для изменения текста записи
+ */
 public class ChangeNoteMenu extends Menu {
     private final Note note;
 
@@ -23,7 +26,6 @@ public class ChangeNoteMenu extends Menu {
             } else {
                 try {
                     note.setContent(content);
-                    ConsoleUI.notifier.add("Запись успешно изменена!\n", NoticeType.OK);
                     stop();
                 } catch (Exception e) {
                     ConsoleUI.notifier.add(e.getMessage(), NoticeType.ERROR);

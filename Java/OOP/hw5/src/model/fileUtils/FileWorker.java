@@ -3,6 +3,9 @@ package model.fileUtils;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Класс для работы с файлами
+ */
 public class FileWorker {
     private String fileName;
     private String folderPath;

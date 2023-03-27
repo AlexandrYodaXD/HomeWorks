@@ -2,12 +2,16 @@ package presenter;
 
 import model.Note;
 import model.Notepad;
+import model.fileUtils.FileUtils;
 import view.View;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Класс, соединяющий View и Model
+ */
 public class Presenter {
     private final Notepad notepad;
 
@@ -25,7 +29,7 @@ public class Presenter {
     }
 
     public List<String> getAllFilesNames(String folderPath) {
-        return notepad.getAllTXTFilesNames(folderPath);
+        return FileUtils.getAllFilesNames(folderPath, ".txt");
     }
 
     public ArrayList<Note> getAllNotes() throws NullPointerException {
@@ -38,7 +42,7 @@ public class Presenter {
 
     public String getFileName() {
         try {
-            return notepad.getFileName();
+            return notepad.getNotepadName();
         } catch (Exception e){
             return "N/A";
         }
@@ -63,7 +67,11 @@ public class Presenter {
         notepad.save();
     }
 
-    public void addNote(String newNote) throws IOException {
-        notepad.add(newNote);
+    public void addNote(Note note) throws IOException {
+        notepad.add(note);
+    }
+
+    public void resetNotepad(){
+        notepad.reset();
     }
 }

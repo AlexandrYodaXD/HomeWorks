@@ -3,6 +3,9 @@ package view.consoleUI.menu;
 import view.consoleUI.ConsoleUI;
 import view.consoleUI.notifications.NoticeType;
 
+/**
+ * Класс для создания нового файла-блокнота
+ */
 public class CreationFileMenu extends Menu {
 
     String folderPath = "src/notepads"; // для теста
@@ -20,7 +23,6 @@ public class CreationFileMenu extends Menu {
 
             System.out.print("Введите название для нового файла (0 для отмены) >: ");
             String fileName = scanner.nextLine();
-
 
             try {
                 ConsoleUI.presenter.createFile(folderPath, fileName);

@@ -6,82 +6,61 @@ import view.consoleUI.notifications.NoticeType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Динамическое меню с возможностью перелистывания страниц с командами, команды 8, 9, 0 зарезервинованы под
+ * Предыдущая страница, Следующая страница и Отмена соответственно.
+ */
 abstract public class FlipMenu extends Menu {
     private final List<Command> commands = new ArrayList<>();
+    private final List<Command> SERVICES = new ArrayList<>();
     int currentPage = 0;
     final int SIZE = 7;
-    List<?> list;
+
     public FlipMenu(String title, boolean oneTimeLoop) {
         super(title, oneTimeLoop);
-    }
-
-    public void setList(List<?> list) {
-        this.list = list;
+        this.SERVICES.add(new PreviousPage());
+        this.SERVICES.add(new NextPage());
+        this.SERVICES.add(new Cancel());
     }
 
     @Override
     public void run() {
-            do {
-                clearConsole();
-                notifier.showNotices();
-                printTitle();
+        do {
+            clearCommands();
+            fillCommands();
+            clearConsole();
+            notifier.showNotices();
+            printTitle();
+            printCommands();
+            printPagesCounter();
 
-                clearCommands();
-                fillCommands();
+            try {
+                System.out.print("Введите команду >: ");
+                String input = scanner.nextLine();
+                int commandNumber = Integer.parseInt(input) - 1;
 
-                // Дозаполняем список команд командами-пустышками, чтобы пункты меню Следующая страница,
-                // Предыдущая страница и Отмена всегда были под цифрами 8, 9 и 0 соответственно.
-                while (commands.size() < 7) {
-                    commands.add(new Placeholder());
+                if (commandNumber == -1) {
+                    commandNumber = 9;
                 }
 
-                // Добавляем пункт меню "Предыдущая страница" если есть куда листать.
-                if (currentPage > 0) {
-                    this.addCommand(new PreviousPage());
+                if (commandNumber >= 0 && commandNumber < SIZE) {
+                    commands.get(currentPage * SIZE + commandNumber).execute(this);
+                } else if (commandNumber >= SIZE && commandNumber <= SIZE + SERVICES.size()) {
+                    SERVICES.get(commandNumber - SIZE).execute(this);
                 } else {
-                    addCommand(new Placeholder());
-                }
-
-                // Добавляем пункт меню "Следующая страница" если есть куда листать.
-                if (currentPage * SIZE + SIZE < list.size()) {
-                    this.addCommand(new NextPage());
-                } else {
-                    addCommand(new Placeholder());
-                }
-
-                // Добавляем команду Отмена
-                this.commands.add(new Cancel());
-
-                printTenCommands();
-
-                // Показываем номер текущей страницы и общее количество страниц, если есть куда листать.
-                if (list.size() > SIZE) {
-                    System.out.printf("[Страница %d/%d]\n", currentPage + 1, list.size() / SIZE + 1);
-                }
-
-                try {
-                    System.out.print("Введите команду >: ");
-                    String input = scanner.nextLine();
-                    int commandNumber = Integer.parseInt(input);
-                    commandNumber = (commandNumber == 0) ? 10 : commandNumber;
-                    if (commandNumber < 1 || commandNumber > commands.size()) {
-                        notifier.add("Неверная команда", NoticeType.ERROR);
-                        continue;
-                    }
-
-                    Command command = commands.get(commandNumber - 1);
-                    command.execute(this);
-                } catch (NumberFormatException e) {
                     notifier.add("Неверная команда", NoticeType.ERROR);
                 }
-            } while (running);
+            } catch (NumberFormatException e) {
+                notifier.add("Неверная команда", NoticeType.ERROR);
+            }
+        } while (running);
     }
 
-    public void incrementPage(){
-        if (currentPage + SIZE < list.size()) currentPage += 1;
+    public void incrementPage() {
+        if (currentPage + SIZE < commands.size()) currentPage += 1;
     }
 
-    public void decrementPage(){
+    public void decrementPage() {
         if (currentPage > 0) currentPage -= 1;
     }
 
@@ -89,18 +68,33 @@ abstract public class FlipMenu extends Menu {
         commands.add(command);
     }
 
-    abstract protected void fillCommands();
-
     public void clearCommands(){
         commands.clear();
     }
 
-    protected void printTenCommands() {
-        for (int i = 0; i < commands.size() && i < 10; i++) {
-            int j = (i == 9) ? -10 : 0;
-            String commandDescription = commands.get(i).getDescription();
-            String text = (commandDescription != null) ? String.format("\t%d. %s%n", i + j + 1, commandDescription) : "";
-            System.out.print(text);
+    abstract protected void fillCommands();
+
+    protected void printCommands() {
+        // Пронумерованный пункты меню
+        for (int i = currentPage * SIZE; i < commands.size() && i < (currentPage + 1) * SIZE; i++) {
+            System.out.printf("\t%d. %s\n", (i + 1 - (currentPage * SIZE)), commands.get(i).getDescription());
+        }
+        // Предыдущая страница
+        if (currentPage > 0) {
+            System.out.printf("\t%d. %s\n", SIZE + 1, SERVICES.get(0).getDescription());
+        }
+        // Следующая страница
+        if (currentPage * SIZE + SIZE < commands.size()) {
+            System.out.printf("\t%d. %s\n", SIZE + 2, SERVICES.get(1).getDescription());
+        }
+        // Отмена
+        System.out.printf("\t%d. %s\n", 0, SERVICES.get(2).getDescription());
+    }
+
+    protected void printPagesCounter() {
+        // Показываем номер текущей страницы и общее количество страниц, если есть куда листать.
+        if (commands.size() > SIZE) {
+            System.out.printf("[Страница %d/%d]\n", currentPage + 1, commands.size() / SIZE + 1);
         }
     }
 }
