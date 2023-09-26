@@ -1,0 +1,3 @@
+file_path,is_directory,size_bytes,content
+../example_dir\sub_dir_1\example.txt,False,17,some example text
+../example_dir\sub_dir_2\another_example.txt,False,12,another text

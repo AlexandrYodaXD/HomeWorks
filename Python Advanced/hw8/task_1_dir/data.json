@@ -1,0 +1,14 @@
+[
+    {
+        "file_path": "../example_dir\\sub_dir_1\\example.txt",
+        "is_directory": false,
+        "size_bytes": 17,
+        "content": "some example text"
+    },
+    {
+        "file_path": "../example_dir\\sub_dir_2\\another_example.txt",
+        "is_directory": false,
+        "size_bytes": 12,
+        "content": "another text"
+    }
+]
