@@ -7,22 +7,22 @@
 # ○ Декоратор, сохраняющий переданные параметры и результаты работы
 # функции в json файл.
 
-import funcs
+import funcs_pack
 
 CSV_FILENAME = 'random_numbers.csv'
 JSON_FILENAME = 'results.json'
 
 
-@funcs.save_to_json_decorator(JSON_FILENAME)
-@funcs.csv_input_decorator(CSV_FILENAME)
+@funcs_pack.save_to_json_decorator(JSON_FILENAME)
+@funcs_pack.csv_input_decorator(CSV_FILENAME)
 def demo_func(a, b, c):
     """
     Функция для демонстрации работы декораторов
     Для наглядности решил сделать отдельную функцию и задекорировать её ¯\_(ツ)_/¯
     """
-    return funcs.quadratic_roots(a, b, c)
+    return funcs_pack.quadratic_roots(a, b, c)
 
 
 if __name__ == '__main__':
-    funcs.generate_csv(CSV_FILENAME, 100)
+    funcs_pack.generate_csv(CSV_FILENAME, 100)
     demo_func()
