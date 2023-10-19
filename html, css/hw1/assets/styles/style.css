@@ -1,0 +1,44 @@
+h1 {
+    text-align: center;
+    color: red;
+}
+
+h2 {
+    text-align: center;
+    color: brown;
+}
+
+.menu {
+    text-align: center;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+.menu-separator {
+    margin: 0 10px;
+    color: #000;
+}
+
+.product {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center; /* Выравнивание содержимого по центру */
+    border: 3px solid #ccc; /* Граница вокруг продукта */
+    padding: 20px; /* Отступы внутри продукта */
+    
+}
+
+.product img {
+    max-width: 20%; /* Изображение товара масштабируется по ширине контейнера */
+    height: auto; /* Сохраняет соотношение сторон изображения */
+}
+
+.product h2 {
+    font-size: 24px; /* Размер шрифта для названия товара */
+    margin: 10px 0; /* Отступы сверху и снизу */
+}
+
+.product p {
+    font-size: 16px; /* Размер шрифта для описания товара */
+    margin: 10px 0; /* Отступы сверху и снизу */
+}
