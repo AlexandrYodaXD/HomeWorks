@@ -1,0 +1,57 @@
+a {
+    text-decoration: none;
+    }
+
+h1 {
+    color: #222222;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: bold;
+}
+
+p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 30px;
+    color: #7D7987;
+}
+
+.menu {
+    text-align: center;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+.menu-separator {
+    margin: 0 10px;
+    color: #000;
+}
+
+.menu a {
+    color: cornflowerblue;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.product {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    border: 3px solid #ccc;
+    padding: 20px;
+    
+}
+
+.product img {
+    max-width: 20%;
+    height: auto;
+}
+
+.product h2 {
+    color: coral;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 80px;
+}
