@@ -35,11 +35,14 @@ a {
     text-decoration: none;
 }
 
-.menu__bar {
-    margin-top: 50px;
+.basic {
     margin-left: auto;
     margin-right: auto;
     width: 1170px;
+}
+
+.menu__bar {
+    margin-top: 50px;
     display: flex;
     gap: 500px;
 }
@@ -93,9 +96,6 @@ a {
 .main_content {
     margin-top: 84px;
     margin-bottom: 162px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1170px;
     display: flex;
     gap: 39px;
 }
@@ -156,14 +156,66 @@ a {
     line-height: normal;
 }
 
-.logos {
-    margin-bottom: 96px;
-    margin-left: auto;
-    margin-right: auto;
+.logos-block {
     padding-top: 97px;
     padding-bottom: 96px;
-    width: 1170px;
     display: flex;
     gap: 48px;
-    
+}
+
+.cards-block {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.card {
+    /* border: 1px solid #000; */
+    padding-top: 40px;
+    padding-bottom: 25px;
+    padding-left: 30px;
+    padding-right: 31px;
+    background: #FFF;
+    transition: box-shadow 0.3s ease;  /* это я нагуглил :) */
+}
+
+.card:hover {  /* и это я нагуглил :) */
+    box-shadow: 15px 25px 56px 6px rgba(0, 0, 0, 0.06);
+}
+
+.card-icon {
+    margin-bottom: 25px;
+}
+
+.card-title {
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 17px;
+}
+
+.card-paragraph {
+    color: #666;
+    font-family: Gilroy-Regular;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 22.5px */
+    margin-bottom: 25px;
+}
+
+.card-link {
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 16.5px */
 }
