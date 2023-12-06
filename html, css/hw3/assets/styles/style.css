@@ -41,6 +41,8 @@ a {
     width: 1170px;
 }
 
+
+/*menu bar block*/
 .menu__bar {
     margin-top: 50px;
     display: flex;
@@ -92,7 +94,10 @@ a {
     font-weight: 400;
     line-height: normal;
 }
+/*menu bar block end*/
 
+
+/* main content block*/
 .main_content {
     margin-top: 84px;
     margin-bottom: 162px;
@@ -134,7 +139,7 @@ a {
     flex-shrink: 0;
 
     border-radius: 50px;
-    background: #F25822;
+    background-color: #F25822;
     box-shadow: 4px 4px 8px 0px rgba(242, 88, 34, 0.20);
 
     color: #FFF;
@@ -145,6 +150,13 @@ a {
     line-height: normal;
 
     border-style: none;
+
+    transition: background-color 0.3s ease;
+    cursor: pointer
+}
+
+.main_content_links button:hover {
+    background-color: #ff8558;
 }
 
 .main_content_links a {
@@ -155,15 +167,21 @@ a {
     font-weight: 400;
     line-height: normal;
 }
+/* main content block end*/
 
-.logos-block {
+
+/* logos block*/
+.logos {
     padding-top: 97px;
     padding-bottom: 96px;
     display: flex;
     gap: 48px;
 }
+/* logos block end*/
 
-.cards-block {
+
+/* features block */
+.features {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -171,25 +189,25 @@ a {
     padding-bottom: 100px;
 }
 
-.card {
+.features__card {
     /* border: 1px solid #000; */
     padding-top: 40px;
     padding-bottom: 25px;
     padding-left: 30px;
     padding-right: 31px;
     background: #FFF;
-    transition: box-shadow 0.3s ease;  /* это я нагуглил :) */
+    transition: box-shadow 0.3s ease;
 }
 
-.card:hover {  /* и это я нагуглил :) */
-    box-shadow: 15px 25px 56px 6px rgba(0, 0, 0, 0.06);
+.features__card:hover {
+    box-shadow: 15px 25px 60px -5px rgba(0, 0, 0, 0.10);
 }
 
-.card-icon {
+.features__card-icon {
     margin-bottom: 25px;
 }
 
-.card-title {
+.features__card h2 {
     color: #000;
     font-family: Gilroy-Bold;
     font-size: 24px;
@@ -199,7 +217,7 @@ a {
     margin-bottom: 17px;
 }
 
-.card-paragraph {
+.features__card p {
     color: #666;
     font-family: Gilroy-Regular;
     font-size: 15px;
@@ -210,12 +228,126 @@ a {
     margin-bottom: 25px;
 }
 
-.card-link {
+.features__card a {
     color: #000;
     font-family: Gilroy-Bold;
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%;
-    /* 16.5px */
 }
+/* features block end*/
+
+
+/* services block */
+.services-wrapper {
+    background-color: #FAFAFA;
+}
+
+.services {
+    padding-top: 92px;
+    padding-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+}
+
+.services__upper-text {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    text-align: center;
+    max-width: 682px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services__upper-text h3 {
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.services__upper-text p {
+    color: #666;
+    text-align: center;
+    font-family: Gilroy-Regular;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 24px */
+}
+
+.services__cards-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+}
+
+.services__card {
+    background-color: #fff;
+    padding-bottom: 50px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.services__card:hover {
+    box-shadow: 15px 25px 60px -5px rgba(0, 0, 0, 0.10);
+}
+
+.services__card h4 {
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 22px;
+}
+
+.services__card p {
+    color: #AAA;
+    text-align: center;
+    font-family: Gilroy-Regular;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    /* 22.5px */
+    margin-bottom: 39px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.services__card button {
+
+    width: 150px;
+    height: 50px;
+    flex-shrink: 0;
+
+    border-radius: 50px;
+    background-color: #F25822;
+    box-shadow: 4px 4px 8px 0px rgba(242, 88, 34, 0.20);
+
+    color: #FFF;
+    text-align: center;
+    font-family: Gilroy-Bold;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+
+    border-style: none;
+
+    transition: background-color 0.3s ease;
+    cursor: pointer
+}
+
+.services__card button:hover {
+    background-color: #ff8558;
+}
+/* services block end*/
