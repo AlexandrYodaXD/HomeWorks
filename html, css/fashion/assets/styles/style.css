@@ -1,0 +1,258 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Regular.ttf');
+    /* font-weight: 400; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    font-family: 'Lato';
+}
+
+.base-wrapper {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* header start */
+header {
+    background-color: #222;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 18px;
+    padding-bottom: 19px;
+}
+
+.header-left {
+    padding-left: 32px;
+    display: flex;
+    gap: 41px;
+    align-items: flex-end;
+}
+
+.header-right {
+    padding-right: 32px;
+    display: flex;
+    gap: 48px;
+}
+/* header end */
+
+
+/* intro start */
+.intro {
+    background: #F1E4E6;
+}
+
+.intro__wrapper {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    /* gap: 91.42px; */
+}
+
+.intro img {
+    width: 800px;
+    height: 764px;
+    flex-shrink: 0;
+}
+
+.intro__text-wrapper {
+    margin-top: 290px;
+    margin-right: 350px; /*костыль, чтобы сместить мужика куда надо*/
+}
+
+.intro p {
+    border-left: 12px solid #F16D7F;
+}
+
+.intro__text {
+    padding-left: 16px;
+    color: #222;
+    font-family: Lato;
+    font-style: normal;
+    line-height: normal;
+    text-wrap: nowrap;
+}
+
+.intro__text-upper {
+    font-size: 48px;
+    font-weight: 900;
+    display: block;
+}
+
+.intro__text-bottom {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.intro__text-collored {
+    color: #F16D7F;
+}
+/* intro end */
+
+
+/* offer start */
+.offer-wrapper {
+    margin-top: 65px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.offer__item {
+    position: relative;
+}
+
+.offer__item:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 22, 22, 0.70);
+    z-index: 1;
+}
+
+.offer-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+}
+
+.offer__item-big {
+    grid-column: 1/4;
+}
+
+.offer__item-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 3;
+    font-family: Lato;
+    font-style: normal;
+    line-height: normal;
+    text-wrap: nowrap;
+}
+
+.offer__item-text-upper {
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.offer__item-text-bottom {
+    color: #F16D7F;
+    font-size: 24px;
+    font-weight: 700;
+}
+/* offer end */
+
+
+/* fetured start */
+.fetured {
+    margin-top: 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fetured h1 {
+    color: #222;
+    font-family: Lato;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.fetured h2 {
+    margin-top: 6px;
+    color: #9F9F9F;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.fetured__grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.fetured__grid-item-text {
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.fetured__grid-item-text h2 {
+    color: #000;
+    font-family: Lato;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.fetured__grid-item-text p {
+    color: #5D5D5D;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.fetured__grid-item-text h3 {
+    color: #F16D7F;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.fetured button {
+    margin-top: 48px;
+    margin-bottom: 60px;
+
+    border-radius: 0;
+    border-style: solid;
+    border-color: #F26376;
+
+    color: #F26376;
+    font-family: Lato;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 15px 39px 14px 39px;
+}
+
+/* fetured end */
