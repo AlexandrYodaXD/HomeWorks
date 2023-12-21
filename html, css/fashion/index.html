@@ -16,16 +16,16 @@
                 <img src="assets/images/header-search.svg" alt="search">
             </div>
             <div class="header-right">
-                <img src="assets/images/header-menu.svg" alt="menu">
-                <img src="assets/images/header-account.svg" alt="account">
-                <img src="assets/images/header-basket.svg" alt="basket">
+                <img class="header__menu" src="assets/images/header-menu.svg" alt="menu">
+                <img class="header__account" src="assets/images/header-account.svg" alt="account">
+                <img class="header__basket" src="assets/images/header-basket.svg" alt="basket">
             </div>
         </div>
     </header>
 
     <section class="intro">
         <div class="intro__wrapper">
-            <img src="assets/images/intro.png" alt="intro man">
+            <img class="intro__jacket-man" src="assets/images/intro.png" alt="jacket-man">
             <div class="intro__text-wrapper">
                 <p>
                     <span class="intro__text intro__text-upper">
@@ -81,7 +81,11 @@
                 </p>
             </div>
             <div class="offer__item offer__item-big">
-                <img src="assets/images/offer-accesories.png" alt="accesories">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="assets/images/offer-accesories-mobile.png">
+                    <img src="assets/images/offer-accesories.png" alt="accesories" srcset="">
+                </picture>
+                
                 <p class="offer__item-text">
                     <span class="offer__item-text-upper">
                         LUXIROUS & TRENDY
@@ -95,7 +99,7 @@
         </div>
     </section>
 
-    <section class="fetured base-wrapper">
+    <section class="fetured">
         <h1>Fetured Items</h1>
         <h2>Shop for items based on what we featured in this week</h2>
         <div class="fetured__grid">

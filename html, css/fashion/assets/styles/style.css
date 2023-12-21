@@ -92,19 +92,16 @@ header {
 .header-wrapper {
     display: flex;
     justify-content: space-between;
-    padding-top: 18px;
-    padding-bottom: 19px;
+    padding: 18px 16px;
 }
 
 .header-left {
-    padding-left: 32px;
     display: flex;
     gap: 41px;
     align-items: flex-end;
 }
 
 .header-right {
-    padding-right: 32px;
     display: flex;
     gap: 48px;
 }
@@ -229,6 +226,8 @@ header {
 /* fetured start */
 .fetured {
     margin-top: 96px;
+    margin-left: 16px;
+    margin-right: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -348,10 +347,80 @@ header {
 
     .fetured button {
         margin-top: 32.5px;
+        background-color: inherit;
     }
 
     .fetured__grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
+}
+
+@media screen and (max-width: 767px){
+
+    header .header__account {
+        display: none;
+    }
+
+    header .header__basket {
+        display: none;
+    }
+
+
+
+    .intro__wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .intro__jacket-man{
+        display: none;
+    }
+
+    .intro__text-wrapper {
+        padding: 148px 0;
+    }
+
+    .intro__text-upper{
+        font-size: 38px;
+    }
+
+    .intro__text-bottom{
+        font-size: 20px;
+    }
+
+    .intro__text-collored{
+        font-size: 20px;
+    }
+
+
+
+    .offer-wrapper {
+        margin-top: 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+
+
+    .fetured {
+        margin-top: 64px;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .fetured__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fetured__grid-item-text {
+        gap: 12px;
+        padding-right: 28.72px;
+    }
+
+    .fetured button {
+        margin-top: 40px;
+    }
+
+    
 }
