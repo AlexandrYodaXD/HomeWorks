@@ -226,8 +226,6 @@ header {
 /* fetured start */
 .fetured {
     margin-top: 96px;
-    margin-left: 16px;
-    margin-right: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -322,8 +320,172 @@ header {
 
 /* fetured end */
 
+/* feature start */
+.feature  {
+    background-color: #222;
+}
 
-@media screen and (min-width: 768px) and (max-width: 1439px){
+.feature__wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    padding: 104px 0;
+}
+
+.feature__wrapper-item {
+    width: 284px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.feature__wrapper-item h1 {
+    color: #FBFBFB;
+    font-family: Lato;
+    font-size: 19.96px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.feature__wrapper-item p{
+    color: #FBFBFB;
+    text-align: center;
+    font-family: Lato;
+    font-size: 13.972px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+/* feature end */
+
+
+
+/* subscribe start */
+.subscribe{
+    background-image: url(../images/subscribe-bg.png);
+    background-position: center;
+    block-size: cover;
+    height: 448px;
+    position: relative;
+}
+
+.subscribe::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(244, 244, 244, 0.70);
+}
+
+.subscribe__wrapper {
+    display: flex;
+    padding-top: 97px;
+    padding-bottom: 126px;
+    justify-content: space-between;
+}
+
+.subscribe__left {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.subscribe__left p {
+    text-align: center;
+    width: 360px;
+    color: #222224;
+    font-family: Lato;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.subscribe__right {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px
+}
+
+.subscribe__right-text h1 {
+    color: #222224;
+    text-align: center;
+    font-family: Lato;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 167.2%;
+}
+.subscribe__right-text h2 {
+    color: #222224;
+    font-family: Lato;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 167.2%;
+}
+
+.subscribe__right .email {
+    border-style: none;
+    background-color: #E1E1E1;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    width: 322.59px;
+    height: 49px;
+    flex-shrink: 0;
+    text-indent: 22px;
+
+    color: #222224;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.subscribe__right .email::placeholder {
+    /* color: #222224;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; */
+    opacity: 0.671;
+}
+
+.subscribe__right .submit {
+    border-style: none;
+    background-color: #E05C6E;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    width: 100px;
+    height: 49px;
+    flex-shrink: 0;
+
+    color: #FFF;
+    text-align: center;
+    font-family: Lato;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+/* subscribe end */
+
+
+@media screen and (max-width: 1439px){
     .intro__text-upper {
         font-size: 44px;
     }
@@ -354,6 +516,25 @@ header {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
+
+    .feature__wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 48px;
+        padding-bottom: 64px;
+    }
+
+    .subscribe__wrapper {
+        flex-direction: column;
+        padding-top: 64px;
+        padding-bottom: 140px;
+        gap: 48px;
+    }
+
+    .subscribe__left p {
+        font-size: 20px;
+    }
+    
 }
 
 @media screen and (max-width: 767px){
@@ -422,5 +603,18 @@ header {
         margin-top: 40px;
     }
 
-    
+    .feature__wrapper {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 48px;
+        padding-bottom: 81px;
+    }
+
+    .subscribe__left p {
+        font-size: 20px;
+    }
+
+    .subscribe__right-text h2 {
+        font-size: 14px;
+    }
 }
