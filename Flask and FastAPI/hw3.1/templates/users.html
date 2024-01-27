@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>Пользователи</h1>
+    <ul>
+        {% for user in content %}
+                <li>{{ 'ID' }}: {{ user.id }}</li>
+                <li>{{ 'Имя' }}: {{ user.first_name }}</li>
+                <li>{{ 'Фамилия' }}: {{ user.second_name }}</li>
+                <li>{{ 'Пол' }}: {{ user.gender }}</li>
+                <li>{{ 'Эл. почта' }}: {{ user.email }}</li>
+                <li>{{ 'Дата создания' }}: {{ user.created_at }}</li>
+                <li>{{ 'Пароль' }}: {{ user.password }}</li>
+                <li>{{ 'Хэш пароля' }}: {{ user.hashed_password }}</li><br>
+        {% endfor %}
+    </ul>
+{% endblock %}
