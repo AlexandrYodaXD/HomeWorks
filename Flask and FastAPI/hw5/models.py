@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 
 class Task(BaseModel):
-    id: int
+    id: int = None
     name: str
     description: Optional[str]
     status_complete: bool

@@ -39,10 +39,17 @@ async def get_task(task_id: int):
 #  Создание новой задачи
 @app.post("/tasks")
 async def create_task(task: Task):
-    # Генерация id для новой задачи основываясь на максимальном id
-    new_task_id = max(task.id for task in tasks) + 1 if tasks else 1
-    new_task = Task(id=new_task_id, name=task.name, description=task.description, status_complete=task.status_complete)
+    # Проверка на уникальность id
+    if task.id is not None and any(existing_task.id == task.id for existing_task in tasks):
+        return JSONResponse(status_code=400, content={"message": "Task with this id already exists"})
+
+    # Если id не передан, то генерируем его
+    if not task.id:
+        task.id = max(task.id for task in tasks) + 1 if tasks else 1
+
+    new_task = Task(id=task.id, name=task.name, description=task.description, status_complete=task.status_complete)
     tasks.append(new_task)
+
     return new_task
 
 
